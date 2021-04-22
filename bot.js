@@ -17,7 +17,7 @@ client.on("message", gotMessage);
 let recentGifID = [];
 async function gotMessage(msg) {
   console.log(msg.content);
-  if (msg.channel.id == "834826825943089184" && msg.content === "!gif") {
+  if (msg.content === "!gif") {
     //let tenorURL = `https://api.tenor.com/v1/search?q=allenxandria&key=${process.env.TENORKEY}&limit=50`;
     let tenorURL = `https://g.tenor.com/v1/random?q=allenxandria&key=${process.env.TENORKEY}&limit=50`;
     let response = await fetch(tenorURL);
