@@ -1,25 +1,13 @@
-require("dotenv").config();
-const fetch = require("node-fetch");
+const gif = require("./commands/gif.js");
 
-let recentGifID = [];
+const commands = { gif };
+
 module.exports = async function (msg) {
   console.log(msg.content);
-  if (msg.content === "!gif") {
-    //let tenorURL = `https://api.tenor.com/v1/search?q=allenxandria&key=${process.env.TENORKEY}&limit=50`;
-    let tenorURL = `https://g.tenor.com/v1/random?q=allenxandria&key=${process.env.TENORKEY}&limit=50`;
-    let response = await fetch(tenorURL);
-    let json = await response.json();
-    //console.log(json);
-    let index = Math.floor(Math.random() * json.results.length);
-    while (recentGifID.includes(json.results[index].id)) {
-      console.log("Repeat detected! Stop the madness!", json.results[index].id);
-      index = Math.floor(Math.random() * json.results.length);
-    }
-    recentGifID.push(json.results[index].id);
-    if (recentGifID.length > 8) {
-      recentGifID.shift();
-    }
-    console.log(recentGifID);
-    msg.channel.send(json.results[index].url);
+  let tokens = msg.content.split(" ");
+  let command = tokens.shift();
+  if (command.charAt(0) === "!") {
+    command = command.substring(1);
+    commands[command](msg, tokens);
   }
 };
