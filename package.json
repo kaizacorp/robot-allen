@@ -1,0 +1,15 @@
+{
+  "name": "robot-allen",
+  "version": "1.0.0",
+  "description": "Discord bot for Library of Allenxandria's Discord server",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kai Charlton",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^8.2.0"
+  }
+}
