@@ -1,6 +1,7 @@
 const gif = require("./commands/gif.js");
+const tbr = require("./commands/tbr.js");
 
-const commands = { gif };
+const commands = { gif, tbr };
 
 module.exports = async function (msg) {
   console.log(msg.content);
