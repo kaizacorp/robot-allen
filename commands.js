@@ -11,6 +11,7 @@ module.exports = async function (msg) {
   let command = tokens.shift();
   if (command.charAt(0) === "!") {
     command = command.substring(1);
+    console.log(command, msg.author);
     commands[command](msg, tokens);
   }
 };
