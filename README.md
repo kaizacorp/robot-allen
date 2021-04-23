@@ -16,4 +16,9 @@ https://discord.com/oauth2/authorize?client_id=834824357989318679&scope=bot
 
 The bot currently runs on all channels. This is my first Discord bot so please bare with me.
 
-If you have any bugs/issues please create an issue here or message me @KaizaCorp#6992 on Discord to let me know! 
+If you have any ideas/bugs/issues please create an issue here or message me @KaizaCorp#6992 on Discord to let me know! 
+
+TODO:
+
+Allenxandria gif search with `!gif term1 term2 ...`
+Properly sanitize inputs for dealing with mixtures of quote types
