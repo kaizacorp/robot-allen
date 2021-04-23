@@ -10,8 +10,14 @@ module.exports = async function (msg) {
     let command = tokens.shift();
     if (command.charAt(0) === "!") {
       command = command.substring(1);
-      console.log(command, tokens, msg.author.username);
-      commands[command](msg, tokens);
+      if (command in commands) {
+        console.log(command, tokens, msg.author.username);
+        commands[command](msg, tokens);
+      } else {
+        msg.channel.send(
+          "Sorry, I don't know how to handle " + command + "...yet 🤖"
+        );
+      }
     }
   }
 };
