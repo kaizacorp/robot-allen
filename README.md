@@ -20,5 +20,6 @@ If you have any ideas/bugs/issues please create an issue here or message me @Kai
 
 TODO:
 
--Allenxandria gif search with `!gif term1 term2 ...`
--Properly sanitize inputs for dealing with mixtures of quote types
++ Allenxandria gif search with `!gif term1 term2 ...`
+
++ Properly sanitize inputs for dealing with mixtures of quote types
