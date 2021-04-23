@@ -14,7 +14,7 @@ module.exports = async function (msg) {
         console.log(command, tokens, msg.author.username);
         commands[command](msg, tokens);
       } else {
-        console.log("Command: ", command, "attempted.");
+        console.log("Command: ", command, "attempted.", msg.author.username);
         msg.channel.send(
           "Sorry, I don't know how to handle " + command + "...yet 🤖"
         );
