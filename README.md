@@ -18,7 +18,7 @@ The bot currently runs on all channels. This is my first Discord bot so please b
 
 If you have any ideas/bugs/issues please create an issue here or message me @KaizaCorp#6992 on Discord to let me know! 
 
-TODO:
+**TODO:**
 
 + Allenxandria gif search with `!gif term1 term2 ...`
 
