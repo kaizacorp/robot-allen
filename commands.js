@@ -13,8 +13,10 @@ module.exports = async function (msg) {
       if (command in commands) {
         console.log(command, tokens, msg.author.username);
         commands[command](msg, tokens);
-      } else {
+      } else if (command.length > 5) {
         console.log("Command: ", command, "attempted.", msg.author.username);
+        msg.channel.send("Nice try " + msg.author.username + " 🤖");
+      } else {
         msg.channel.send(
           "Sorry, I don't know how to handle " + command + "...yet 🤖"
         );
