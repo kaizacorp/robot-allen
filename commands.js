@@ -5,7 +5,7 @@ const tbr = require("./commands/tbr.js");
 const commands = { gif, tbr };
 
 module.exports = async function (msg) {
-  if (msg.author.bot) return;
+  if (msg.author.bot) return; // Robot Allen doesn't speak to other bots
   let tokens = msg.content.replace(/”/g, '"');
   tokens = tokens.match(/(?:[^\s"]+|"[^"]*")+/g);
   let command = tokens.shift();
