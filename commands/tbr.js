@@ -14,6 +14,7 @@ module.exports = async function (msg, tokens) {
       case "ACOSF":
       case "SJM":
         text = "You should all be reading " + book + ". I feel it in my bones!";
+        break;
       case "LotR":
       case "LoTR":
       case "lotr":
@@ -32,11 +33,13 @@ module.exports = async function (msg, tokens) {
           ". I haven't even read " +
           book +
           " yet.";
+        break;
 
       case "Dorothy Dunnett":
       case "The Lymond Chronicles":
       case "Lymond Chronicles":
         text = "Nice try Klaus. Klaus loves " + book + ".";
+        break;
       case "Senlin":
       case "Senlin Ascends":
       case "SenlinAscends":
@@ -47,16 +50,20 @@ module.exports = async function (msg, tokens) {
       case "The Hod King":
       case "THK":
         text = "How bout' dem Senlin books?! I love " + book;
+        break;
       case "Bees":
       case "bees":
         text = "I knew I was going to get" + book + ",every time!";
+        break;
       case "no bees":
       case "no Bees":
       case "No Bees":
         text = "Well good, " + book + "was what I started with.";
+        break;
       case "Discworld":
       case "discworld":
         text = "You should all be reading " + book + ". It is incredible.";
+        break;
       case "The Faithful and the Fallen":
       case "Faithful and the Fallen":
       case "FatF":
@@ -68,9 +75,11 @@ module.exports = async function (msg, tokens) {
       case "John Gwynne":
       case "Gwynne":
         text = "You should all be reading " + book + ". Go get em' Corban!";
+        break;
 
       default:
         text = "You should all be reading " + book + ".";
+        break;
     }
 
     msg.channel.send(text);
