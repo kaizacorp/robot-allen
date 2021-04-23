@@ -16,6 +16,7 @@ module.exports = async function (msg) {
       } else {
         msg.channel.send(
           "Sorry, I don't know how to handle " + command + "...yet 🤖"
+          console.log("Command: ", command, "attempted.")
         );
       }
     }
