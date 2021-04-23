@@ -12,7 +12,7 @@ module.exports = async function (msg) {
     index = Math.floor(Math.random() * json.results.length);
   }
   recentGifID.push(json.results[index].id);
-  if (recentGifID.length > 8) {
+  if (recentGifID.length > 25) {
     recentGifID.shift();
   }
   console.log(recentGifID);
