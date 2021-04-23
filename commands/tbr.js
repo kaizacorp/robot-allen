@@ -13,7 +13,7 @@ module.exports = async function (msg, tokens) {
       case "ACOTAR":
       case "ACOSF":
       case "SJM":
-        text = "Ugh read " + book + ". I feel it in my bones";
+        text = "You should all be reading " + book + ". I feel it in my bones!";
       case "LotR":
       case "LoTR":
       case "lotr":
@@ -31,22 +31,25 @@ module.exports = async function (msg, tokens) {
           book +
           ". I haven't even read " +
           book +
-          ".";
+          " yet.";
 
       case "Dorothy Dunnett":
       case "The Lymond Chronicles":
       case "Lymond Chronicles":
-        text = "Nice try Klaus.";
+        text = "Nice try Klaus. Klaus loves " + book + ".";
       case "Senlin":
       case "Senlin Ascends":
+      case "SenlinAscends":
       case "AotS":
       case "Arm of the Sphinx":
       case "Hod King":
+      case "HodKing":
       case "The Hod King":
+      case "THK":
         text = "How bout' dem Senlin books?! I love " + book;
       case "Bees":
       case "bees":
-        text = "I knew I was going to " + book + ". Every time!";
+        text = "I knew I was going to get" + book + ",every time!";
       case "no bees":
       case "no Bees":
       case "No Bees":
@@ -54,6 +57,17 @@ module.exports = async function (msg, tokens) {
       case "Discworld":
       case "discworld":
         text = "You should all be reading " + book + ". It is incredible.";
+      case "The Faithful and the Fallen":
+      case "Faithful and the Fallen":
+      case "FatF":
+      case "Malice":
+      case "Valour":
+      case "Valor":
+      case "Ruin":
+      case "Wrath":
+      case "John Gwynne":
+      case "Gwynne":
+        text = "You should all be reading " + book + ". Go get em' Corban!";
 
       default:
         text = "You should all be reading " + book + ".";
