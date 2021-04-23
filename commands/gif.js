@@ -15,7 +15,9 @@ module.exports = async function (msg) {
   }
   recentGifID.push(json.results[index].id);
   if (recentGifID.length >= 25) {
-    recentGifID.shift();
+    if (recentGifID) {
+      recentGifID.shift();
+    }
   }
   //console.log(recentGifID);
   console.log(uniqueAttempts);
