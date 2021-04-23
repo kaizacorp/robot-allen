@@ -20,11 +20,15 @@ module.exports = async function (msg, tokens) {
       case "lotr":
       case "LOTR":
       case "Lord of the Rings":
+      case "lord of the rings":
       case "Fellowship of the Ring":
+      case "fellowship of the ring":
       case "The Two Towers":
       case "Two Towers":
+      case "two towers":
       case "The Return of the King":
       case "Return of the King":
+      case "return of the king":
       case "The Hobbit":
       case "the hobbit":
         text =
@@ -36,10 +40,16 @@ module.exports = async function (msg, tokens) {
         break;
 
       case "Dorothy Dunnett":
+      case "dorothy dunnett":
       case "The Lymond Chronicles":
+      case "the lymond chronicles":
       case "Lymond Chronicles":
+      case "lymond chronicles":
+      case "lymond":
+      case "Lymond":
         text = "Nice try Klaus. Klaus loves " + book + ".";
         break;
+      case "senlin":
       case "Senlin":
       case "Senlin Ascends":
       case "SenlinAscends":
@@ -53,27 +63,35 @@ module.exports = async function (msg, tokens) {
         break;
       case "Bees":
       case "bees":
-        text = "I knew I was going to get" + book + ",every time!";
+        text = "I knew I was going to get" + book + ", every time!";
         break;
       case "no bees":
       case "no Bees":
       case "No Bees":
-        text = "Well good, " + book + "was what I started with.";
+        text = "Well good, " + book + " was what I started with.";
         break;
       case "Discworld":
       case "discworld":
+      case "disc world":
+      case "Disc world":
+      case "Disc World":
+      case "disc World":
         text = "You should all be reading " + book + ". It is incredible.";
         break;
+      case "the faithful and the fallen":
       case "The Faithful and the Fallen":
-      case "Faithful and the Fallen":
+      case "faithful and the fallen":
       case "FatF":
+      case "fatf":
       case "Malice":
       case "Valour":
       case "Valor":
       case "Ruin":
       case "Wrath":
       case "John Gwynne":
+      case "john gwynne":
       case "Gwynne":
+      case "gwynne":
         text = "You should all be reading " + book + ". Go get em' Corban!";
         break;
 
