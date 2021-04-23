@@ -40,6 +40,8 @@ module.exports = async function (msg, tokens) {
         break;
 
       case "Dorothy Dunnett":
+      case "Dunnett":
+      case "dunnett":
       case "dorothy dunnett":
       case "The Lymond Chronicles":
       case "the lymond chronicles":
