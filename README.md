@@ -14,4 +14,6 @@ Add Robot Allen to your Discord server by using this link:
 
 https://discord.com/oauth2/authorize?client_id=834824357989318679&scope=bot
 
-If you have any bugs/issues please create an issue here or @KaizaCorp#6992 on Discord to let me know!
+The bot currently runs on all channels.
+
+If you have any bugs/issues please create an issue here or message me @KaizaCorp#6992 on Discord to let me know! 
