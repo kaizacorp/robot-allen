@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 
 let recentGifID = [];
 module.exports = async function (msg) {
-  if (!msg.guild || msg.guild.name === "Fantasy Book Talk") return; //no PMing the bot for gifs, must be in a public server, not allowed in Alex's server
+  if (msg.guild.name === "Fantasy Book Talk") return; // not allowed in Alex's server
   try {
     //let tenorURL = `https://api.tenor.com/v1/search?q=allenxandria&key=${process.env.TENORKEY}&limit=50`;
     let tenorURL = `https://g.tenor.com/v1/random?q=allenxandria&key=${process.env.TENORKEY}&limit=50`;
