@@ -11,7 +11,7 @@ module.exports = async function (msg) {
     if (command.charAt(0) === "!") {
       command = command.substring(1);
       if (command in commands) {
-        console.log(command, tokens, msg.author.username);
+        console.log(command, tokens, msg.author.username, "@", msg.guild);
         commands[command](msg, tokens);
       } else {
         console.log(
