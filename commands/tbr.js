@@ -5,7 +5,7 @@ module.exports = async function (msg, tokens) {
     msg.channel.send("Do you wanna go for " + tokens + " again?");
   } else {
     let index = Math.floor(Math.random() * tokens.length);
-    let book = tokens[index].replace(/['"“”]+/g, "");
+    let book = tokens[index].replace(/["“”]+/g, "");
     let text = "";
 
     switch (book) {
