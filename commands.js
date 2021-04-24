@@ -6,6 +6,7 @@ const commands = { gif, tbr };
 module.exports = async function (msg) {
   let tokens = msg.content;
   if (tokens.length > 0) {
+    tokens = tokens.replace(/['"“”]+/g, '"');
     tokens = tokens.match(/(?:[^\s"]+|"[^"]*")+/g);
     let command = tokens.shift();
     if (command.charAt(0) === "!") {
