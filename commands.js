@@ -11,18 +11,13 @@ module.exports = async function (msg) {
     let command = tokens.shift();
     if (command.charAt(0) === "!") {
       command = command.substring(1);
+      let server = "PM";
+      if (msg.guild) {
+        server = msg.guild.name;
+      }
+      console.log(command, tokens, msg.author.username, "@", server);
       if (command in commands) {
-        console.log(command, tokens, msg.author.username, "@", msg.guild.name);
         commands[command](msg, tokens);
-      } else {
-        console.log(
-          "Command: ",
-          command,
-          "attempted.",
-          msg.author.username,
-          "@",
-          msg.guild.name
-        );
       }
     }
   }
