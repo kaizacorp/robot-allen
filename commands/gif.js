@@ -9,7 +9,7 @@ module.exports = async function (msg) {
     let response = await fetch(tenorURL);
     let json = await response.json();
     let index = Math.floor(Math.random() * json.results.length);
-    /* Code to prevent repetitions... but also causing weird exceptions? Embrace true random? Trust tenor?
+    //prevent repetitions
     let uniqueAttempts = 0;
     while (recentGifID.includes(json.results[index].id)) {
       uniqueAttempts += 1;
@@ -23,8 +23,7 @@ module.exports = async function (msg) {
       }
     }
     //console.log(recentGifID);
-    console.log(uniqueAttempts);
-   */
+    //console.log(uniqueAttempts);
 
     msg.channel.send(json.results[index].url);
   } catch (error) {
