@@ -14,7 +14,14 @@ module.exports = async function (msg) {
         console.log(command, tokens, msg.author.username);
         commands[command](msg, tokens);
       } else {
-        console.log("Command: ", command, "attempted.", msg.author.username);
+        console.log(
+          "Command: ",
+          command,
+          "attempted.",
+          msg.author.username,
+          "@",
+          msg.guild
+        );
       }
     }
   }
