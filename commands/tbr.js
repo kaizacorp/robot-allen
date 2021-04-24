@@ -77,6 +77,7 @@ module.exports = async function (msg, tokens) {
         break;
       case "allen":
         text = "Haaaave you met " + book + "?";
+        break;
 
       default:
         text = "You should all be reading " + book + ".";
