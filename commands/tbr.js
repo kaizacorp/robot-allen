@@ -99,9 +99,11 @@ module.exports = async function (msg, tokens) {
       case "yes":
       case "Yes":
         text = "Yes.";
+        break;
       case "no":
       case "No":
         text = "No.";
+        break;
 
       default:
         text = "You should all be reading " + book + ".";
