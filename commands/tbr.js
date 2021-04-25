@@ -5,9 +5,8 @@ module.exports = async function (msg, tokens) {
     let index = Math.floor(Math.random() * tokens.length);
     let book = tokens[index].replace(/["“”]+/g, "");
     let text = "";
-    let book_lc = book.toLowerCase();
 
-    switch (book_lc) {
+    switch (book.toLowerCase()) {
       case "acomaf":
       case "acotar":
       case "acosf":
