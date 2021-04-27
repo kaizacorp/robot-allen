@@ -5,23 +5,27 @@ module.exports = async function (msg, tokens, command) {
     "Here is a list of available commands: `gif`, `help`, `tbr`.\n" +
     "You can send `!help <command name>` to get additional information on all of Allenbot's commands.";
   if (tokens.length === 0) {
-  } else if (command === "gif") {
+  } else if (tokens[0] === "gif") {
     title = "!gif command usage";
     reply =
       "This is the `!gif` command.\n" +
       "You can send `!gif` for a random Library of Allenxandria GIF straight from the depths of Tenor (lovingly crafted by the one and only Evie!)";
-  } else if (command === "help") {
+  } else if (tokens[0] === "help") {
     title = "!help command usage";
     reply =
       "This is the `!help` command.\n" +
       reply +
       "\n" +
       "If you have suggestions for improving Allenbot please message @Kai";
-  } else if (command === "tbr") {
+  } else if (tokens[0] === "tbr") {
     title = "!tbr command usage";
-    "This is the `!tbr` command.\n" +
+    reply =
+      "This is the `!tbr` command.\n" +
       "You can send `!tbr <choice1> <choice2> ...` to have Allenbot decide your TBR (To Be Read) for you!\n" +
       "Allenbot has special response for certain titles, see if you can find them!";
+  } else {
+    title = "Unknown command?";
+    reply = "I'm sorry, I can't help you with that command!";
   }
 
   const embed = new Discord.MessageEmbed()
