@@ -17,7 +17,7 @@ module.exports = async function (msg) {
       }
       console.log(command, tokens, msg.author.username, "@", server);
       if (command in commands) {
-        commands[command](msg, tokens);
+        commands[command](msg, tokens, command);
       }
     }
   }
