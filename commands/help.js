@@ -1,5 +1,5 @@
-import { MessageEmbed } from "discord.js";
-export default async function (msg, tokens, command) {
+const Discord = require("discord.js");
+module.exports = async function (msg, tokens, command) {
   let title = "";
   let reply =
     "Here is a list of available commands: `gif`, `help`, `tbr`.\n" +
@@ -24,10 +24,8 @@ export default async function (msg, tokens, command) {
       "Allenbot has special response for certain titles, see if you can find them!";
   }
 
-  const embed = new MessageEmbed()
+  const embed = new Discord.MessageEmbed()
     .setColor("RANDOM")
     .setTitle(title)
-    .setDescription(reply)
-    .setAuthor("Allenbot")
     .msg.channel.send(embed);
-}
+};
