@@ -20,6 +20,7 @@ If you have any ideas/bugs/issues please create an issue here or message me @Kai
 
 **TODO:**
 
++ Implement `!help` command explaining usage.
 + Allenxandria gif search with `!gif term1 term2 ...`
-
-+ Properly sanitize inputs for dealing with mixtures of quote types
++ Properly sanitize inputs for dealing with mixtures of quote types for `!tbr`
++ Implement handling `!tbr <goodreads shelf URL>` and reply with book cover image. 
