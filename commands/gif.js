@@ -1,6 +1,9 @@
 const fetch = require("node-fetch");
+const fs = require("fs");
 
-let recentGifID = [];
+//let recentGifID = [];
+let recentGifID = read("./commands/recentGifID.txt");
+
 module.exports = async function (msg) {
   if (msg.guild && msg.guild.name === "Fantasy Book Talk") return; // not allowed in Alex's server
   try {
@@ -9,11 +12,11 @@ module.exports = async function (msg) {
     let response = await fetch(tenorURL);
     let json = await response.json();
     let index = Math.floor(Math.random() * json.results.length);
-    //prevent repetitions
+    //prevent repetitions of last 25 gifs
+    // TODO: keep repititions persistent across process restarts -> JSON?
     let uniqueAttempts = 0;
     while (recentGifID.includes(json.results[index].id)) {
       uniqueAttempts += 1;
-      //console.log("Repeat detected! Stop the madness!", json.results[index].id);
       index = Math.floor(Math.random() * json.results.length);
     }
     recentGifID.push(json.results[index].id);
@@ -22,11 +25,29 @@ module.exports = async function (msg) {
         recentGifID.shift();
       }
     }
-    //console.log(recentGifID);
-    //console.log(uniqueAttempts);
+    console.log(recentGifID.length, uniqueAttempts);
 
     msg.channel.send(json.results[index].url);
   } catch (error) {
     console.log(error);
   }
 };
+
+function write(array, path) {
+  fs.writeFileSync(path, JSON.stringify(array));
+}
+
+function read(path) {
+  const fileContent = fs.readFileSync(path);
+  const array = JSON.parse(fileContent);
+  return array;
+}
+
+function exitHandler(callback) {
+  write(recentGifID, "./commands/recentGifID.txt");
+}
+process.on("SIGINT", function () {
+  write(recentGifID, "./commands/recentGifID.txt");
+  console.log("Ctrl-C...");
+  process.exit(2);
+});
