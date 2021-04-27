@@ -24,8 +24,7 @@ module.exports = async function (msg, tokens, command) {
       "Allenbot has special response for certain titles, see if you can find them!";
   }
 
-  const embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
-    .setTitle(title)
-    .msg.channel.send(embed);
+  const embed = new Discord.MessageEmbed().setColor("RANDOM").setTitle(title);
+
+  msg.channel.send(embed);
 };
