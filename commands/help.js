@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 module.exports = async function (msg, tokens, command) {
-  let title = "";
+  let title = "I am Allenbot, how can I help you?";
   let reply =
     "Here is a list of available commands: `gif`, `help`, `tbr`.\n" +
     "You can send `!help <command name>` to get additional information on all of Allenbot's commands.";
@@ -24,7 +24,11 @@ module.exports = async function (msg, tokens, command) {
       "Allenbot has special response for certain titles, see if you can find them!";
   }
 
-  const embed = new Discord.MessageEmbed().setColor("RANDOM").setTitle(title);
+  const embed = new Discord.MessageEmbed()
+    .setColor("RANDOM")
+    .setTitle(title)
+    .setAuthor("Allenbot")
+    .setDescription(reply);
 
   msg.channel.send(embed);
 };
