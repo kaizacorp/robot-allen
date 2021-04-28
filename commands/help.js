@@ -16,7 +16,7 @@ module.exports = async function (msg, tokens, command) {
       "This is the `!help` command.\n" +
       reply +
       "\n" +
-      "If you have suggestions for improving Allenbot please message @Kai";
+      "If you have suggestions for improving Allenbot please message KaizaCorp#6992";
   } else if (tokens[0] === "tbr") {
     title = "!tbr command usage";
     reply =
