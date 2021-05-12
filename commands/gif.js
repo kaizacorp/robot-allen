@@ -11,8 +11,7 @@ module.exports = async function (msg) {
     let response = await fetch(tenorURL);
     let json = await response.json();
     let index = Math.floor(Math.random() * json.results.length);
-    //prevent repetitions of last 25 gifs
-    // TODO: keep repititions persistent across process restarts -> JSON?
+    //prevent repetitions of last 24 gifs
     let uniqueAttempts = 0;
     while (recentGifID.includes(json.results[index].id)) {
       uniqueAttempts += 1;
