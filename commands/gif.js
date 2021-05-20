@@ -6,14 +6,12 @@ let recentGifID = read("./commands/recentGifID.txt");
 
 module.exports = async function (msg, tokens) {
   try {
-    console.log(tokens);
     // tokens after !gif command treated as search terms added on to allenxandria tag
     if (tokens.length > 0) {
       let terms = "allenxandria " + tokens.join(" ");
       let tenorURL = `https://api.tenor.com/v1/search?q=${terms}&key=${process.env.TENORKEY}&limit=1`;
       let response = await fetch(tenorURL);
       let json = await response.json();
-      console.log(json.results[0].url);
       msg.channel.send(json.results[0].url);
     } else {
       let tenorURL = `https://g.tenor.com/v1/random?q=allenxandria&key=${process.env.TENORKEY}&limit=50`;
