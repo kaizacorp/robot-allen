@@ -4,7 +4,7 @@ Want a Library of Allenxandria gif but don't know which one? Let Robot Allen dec
 
 Commands include:
 
-`!gif` to randomly choose an Allen gif (using Tenor)
+`!gif` to randomly choose an Allen gif (using Tenor) or `!gif term1 term2 ...` to search for an Allen gif with the given terms.
 
 `!tbr option1 option2 ...` to have Robot Allen choose what you should read next (titles with spaces can be used with quotes)
 
