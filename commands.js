@@ -16,8 +16,8 @@ module.exports = async function (msg) {
       if (msg.guild) {
         server = msg.guild.name;
       }
-      console.log(command, tokens, msg.author.username, "@", server);
       if (command in commands) {
+        console.log(command, tokens, msg.author.username, "@", server);
         commands[command](msg, tokens);
       }
     }
