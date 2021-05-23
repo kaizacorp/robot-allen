@@ -60,6 +60,11 @@ module.exports = async function (msg, tokens) {
               raw.push(data.split("\n").join("").trim().replace(/  +/g, " "));
             }
           });
+          if (!raw) {
+            msg.channel.send(
+              "That storygraph link didn't work...it might need to be set to `public`"
+            );
+          }
           // randomly select one of the titles from the array
           let index = Math.floor(Math.random() * raw.length);
           let choice = raw[index];
