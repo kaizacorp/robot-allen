@@ -9,8 +9,10 @@
   "author": "Kai Charlton",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.9",
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "valid-url": "^1.0.9"
   }
 }

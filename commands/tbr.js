@@ -1,5 +1,57 @@
+const validUrl = require("valid-url");
+const fetch = require("node-fetch");
+const cheerio = require("cheerio");
+
 module.exports = async function (msg, tokens) {
-  if (tokens.length < 2) {
+  if (tokens.length === 1) {
+    // check that it is a valid goodreads shelf URL (if not, tell the user)
+    if (validUrl.isHttpsUri(tokens[0])) {
+      let shelfUrl = tokens[0].match(
+        /(https?:\/\/(.+?\.)?goodreads\.com\/review\/list\/[0-9a-zA-Z-]*\?shelf=[0-9a-zA-Z-]*(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g
+      )[0];
+      if (!shelfUrl) {
+        msg.channel.send("Robot Allen requires a valid goodreads shelf link!");
+      }
+      // attempt to crawl the page for titles + authors + covers
+      try {
+        const response = await fetch(shelfUrl);
+        const body = await response.text();
+        //-> might not get response from goodreads server, or no valid titles in shelf (empty shelf?)
+        //console.log(body);
+        // using cheerio, for each <tr> get the title + author (if not found, probably shelf link is private)
+        //    -> store as array of Objects:
+        //    [{title: 'A Game of Thrones', author: 'George R.R. Martin'}, ...]
+        $ = cheerio.load(body);
+        let raw = [];
+        $("#booksBody > tr > td > div > a").each((index, element) => {
+          let data = $(element).text();
+          if (data != "0") {
+            raw.push(data.split("\n").join("").trim().replace(/  +/g, " "));
+          }
+          //console.log($(element).text());
+        });
+        //console.log(raw);
+        let combined = [];
+        for (let i = 0; i < raw.length - 1; i += 2) {
+          combined.push({ title: raw[i], author: raw[i + 1] });
+        }
+        //console.log(combined);
+        // randomly select one of the titles from the array
+        let index = Math.floor(Math.random() * combined.length);
+        let choice = combined[index];
+        console.log(choice);
+        let title = choice.title;
+        let author = choice.author;
+        // send the title and author to discord channel (as embed?)
+        msg.channel.send(title + "\n" + author);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      msg.channel.send("Robot Allen requires a valid link with HTTPS");
+    }
+    return;
+  } else if (tokens.length < 2) {
     msg.channel.send("Robot Allen requires at least two (or more) choices");
   } else {
     let index = Math.floor(Math.random() * tokens.length);
