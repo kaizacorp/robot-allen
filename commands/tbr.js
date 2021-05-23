@@ -28,22 +28,16 @@ module.exports = async function (msg, tokens) {
           if (data != "0") {
             raw.push(data.split("\n").join("").trim().replace(/  +/g, " "));
           }
-          //console.log($(element).text());
         });
-        //console.log(raw);
         let combined = [];
         for (let i = 0; i < raw.length - 1; i += 2) {
           combined.push({ title: raw[i], author: raw[i + 1] });
         }
-        //console.log(combined);
         // randomly select one of the titles from the array
         let index = Math.floor(Math.random() * combined.length);
         let choice = combined[index];
-        console.log(choice);
-        let title = choice.title;
-        let author = choice.author;
         // send the title and author to discord channel (as embed?)
-        msg.channel.send(title + "\n" + author);
+        msg.channel.send(choice.title + "\n" + choice.author);
       } catch (error) {
         console.log(error);
       }
