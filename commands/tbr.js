@@ -6,40 +6,68 @@ module.exports = async function (msg, tokens) {
   if (tokens.length === 1) {
     // check that it is a valid goodreads shelf URL (if not, tell the user)
     if (validUrl.isHttpsUri(tokens[0])) {
-      let shelfUrl = tokens[0].match(
+      let goodreadsUrl = tokens[0].match(
         /(https?:\/\/(.+?\.)?goodreads\.com\/review\/list\/[0-9a-zA-Z-]*\?shelf=[0-9a-zA-Z-]*(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g
       );
-      if (!shelfUrl) {
-        msg.channel.send("Robot Allen requires a valid goodreads shelf link!");
+      let storygraphUrl = tokens[0].match(
+        /(https?:\/\/(.+?\.)?thestorygraph\.com\/tags\/[0-9a-zA-Z-]*(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g
+      );
+      if (!goodreadsUrl && !storygraphUrl) {
+        msg.channel.send(
+          "Robot Allen requires a valid goodreads or storygraph shelf link!"
+        );
       }
-      // attempt to crawl the page for titles + authors + covers
-      try {
-        const response = await fetch(shelfUrl[0]);
-        const body = await response.text();
-        //-> might not get response from goodreads server, or no valid titles in shelf (empty shelf?)
-        //console.log(body);
-        // using cheerio, for each <tr> get the title + author (if not found, probably shelf link is private)
-        //    -> store as array of Objects:
-        //    [{title: 'A Game of Thrones', author: 'George R.R. Martin'}, ...]
-        $ = cheerio.load(body);
-        let raw = [];
-        $("#booksBody > tr > td > div > a").each((index, element) => {
-          let data = $(element).text();
-          if (data != "0") {
-            raw.push(data.split("\n").join("").trim().replace(/  +/g, " "));
+      // attempt to crawl the goodreads page for titles + authors + covers
+      if (goodreadsUrl) {
+        try {
+          const response = await fetch(goodreadsUrl[0]);
+          const body = await response.text();
+          //-> might not get response from goodreads server, or no valid titles in shelf (empty shelf?)
+          //console.log(body);
+          // using cheerio, for each <tr> get the title + author (if not found, probably shelf link is private)
+          //    -> store as array of Objects:
+          //    [{title: 'A Game of Thrones', author: 'George R.R. Martin'}, ...]
+          $ = cheerio.load(body);
+          let raw = [];
+          $("#booksBody > tr > td > div > a").each((index, element) => {
+            let data = $(element).text();
+            if (data != "0") {
+              raw.push(data.split("\n").join("").trim().replace(/  +/g, " "));
+            }
+          });
+          let combined = [];
+          for (let i = 0; i < raw.length - 1; i += 2) {
+            combined.push({ title: raw[i], author: raw[i + 1] });
           }
-        });
-        let combined = [];
-        for (let i = 0; i < raw.length - 1; i += 2) {
-          combined.push({ title: raw[i], author: raw[i + 1] });
+          // randomly select one of the titles from the array
+          let index = Math.floor(Math.random() * combined.length);
+          let choice = combined[index];
+          // send the title and author to discord channel (as embed?)
+          msg.channel.send(choice.title + "\n" + choice.author);
+        } catch (error) {
+          console.log(error);
         }
-        // randomly select one of the titles from the array
-        let index = Math.floor(Math.random() * combined.length);
-        let choice = combined[index];
-        // send the title and author to discord channel (as embed?)
-        msg.channel.send(choice.title + "\n" + choice.author);
-      } catch (error) {
-        console.log(error);
+      }
+      if (storygraphUrl) {
+        try {
+          const response = await fetch(storygraphUrl[0]);
+          const body = await response.text();
+          $ = cheerio.load(body);
+          let raw = [];
+          $(".book-title-author-and-series").each((index, element) => {
+            let data = $(element).text();
+            if (data != "0") {
+              raw.push(data.split("\n").join("").trim().replace(/  +/g, " "));
+            }
+          });
+          // randomly select one of the titles from the array
+          let index = Math.floor(Math.random() * raw.length);
+          let choice = raw[index];
+          // send the title and author to discord channel (as embed?)
+          msg.channel.send(choice);
+        } catch (error) {
+          console.log(error);
+        }
       }
     } else {
       msg.channel.send("Robot Allen requires a valid link with HTTPS");
