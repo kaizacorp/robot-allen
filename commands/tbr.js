@@ -8,13 +8,13 @@ module.exports = async function (msg, tokens) {
     if (validUrl.isHttpsUri(tokens[0])) {
       let shelfUrl = tokens[0].match(
         /(https?:\/\/(.+?\.)?goodreads\.com\/review\/list\/[0-9a-zA-Z-]*\?shelf=[0-9a-zA-Z-]*(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g
-      )[0];
+      );
       if (!shelfUrl) {
         msg.channel.send("Robot Allen requires a valid goodreads shelf link!");
       }
       // attempt to crawl the page for titles + authors + covers
       try {
-        const response = await fetch(shelfUrl);
+        const response = await fetch(shelfUrl[0]);
         const body = await response.text();
         //-> might not get response from goodreads server, or no valid titles in shelf (empty shelf?)
         //console.log(body);
