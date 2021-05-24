@@ -20,7 +20,7 @@ module.exports = async function (msg, tokens) {
       // attempt to crawl the goodreads page for titles + authors
       if (goodreadsUrl) {
         try {
-          const response = await fetch(goodreadsUrl[0]);
+          const response = await fetch(goodreadsUrl[0] + "per_page=100");
           const body = await response.text();
           $ = cheerio.load(body);
           let raw = [];
@@ -42,7 +42,7 @@ module.exports = async function (msg, tokens) {
           }
           let index = Math.floor(Math.random() * combined.length);
           let choice = combined[index];
-          msg.channel.send(choice.title + "\n" + choice.author);
+          msg.channel.send("**" + choice.title + "by" + choice.author);
         } catch (error) {
           console.log(error);
         }
