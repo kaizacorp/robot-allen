@@ -23,7 +23,8 @@ module.exports = async function (msg, tokens, command) {
     reply =
       "This is the `!tbr` command.\n" +
       "You can send `!tbr <choice1> <choice2> ...` to have Allenbot decide your TBR (To Be Read) for you!\n" +
-      "Allenbot has special responses for certain titles, see if you can find them!";
+      "Allenbot has special responses for certain titles, see if you can find them!\n" +
+      "You can send `!tbr <goodreads/storygraph shelf link>` to have Allenbot randomly select a book for you!";
   } else {
     title = "Unknown command?";
     reply = "I'm sorry, I can't help you with that command!";
