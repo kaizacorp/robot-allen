@@ -26,7 +26,7 @@ module.exports = async function (msg, tokens) {
           let raw = [];
           $("#booksBody > tr > td > div > a").each((index, element) => {
             let data = $(element).text();
-            if (data != "0") {
+            if (data.length > 1) {
               raw.push(data.split("\n").join("").trim().replace(/  +/g, " "));
             }
           });
