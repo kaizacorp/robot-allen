@@ -17,7 +17,7 @@ module.exports = async function (msg, tokens) {
           "Robot Allen requires a valid goodreads or storygraph shelf link!"
         );
       }
-      // attempt to crawl the goodreads page for titles + authors + covers
+      // attempt to crawl the goodreads page for titles + authors
       if (goodreadsUrl) {
         try {
           const response = await fetch(goodreadsUrl[0]);
@@ -40,10 +40,8 @@ module.exports = async function (msg, tokens) {
           for (let i = 0; i < raw.length - 1; i += 2) {
             combined.push({ title: raw[i], author: raw[i + 1] });
           }
-          // randomly select one of the titles from the array
           let index = Math.floor(Math.random() * combined.length);
           let choice = combined[index];
-          // send the title and author to discord channel (as embed?)
           msg.channel.send(choice.title + "\n" + choice.author);
         } catch (error) {
           console.log(error);
@@ -67,10 +65,8 @@ module.exports = async function (msg, tokens) {
             );
             return;
           }
-          // randomly select one of the titles from the array
           let index = Math.floor(Math.random() * raw.length);
           let choice = raw[index];
-          // send the title and author to discord channel (as embed?)
           msg.channel.send(choice);
         } catch (error) {
           console.log(error);
