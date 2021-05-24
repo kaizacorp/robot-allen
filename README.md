@@ -6,8 +6,11 @@ Commands include:
 
 `!gif` to randomly choose an Allen gif (using Tenor) or `!gif term1 term2 ...` to search for an Allen gif with the given terms.
 
+`!gif <search terms>` to search Tenor for Allen gifs with matching tags.
+
 `!tbr option1 option2 ...` to have Robot Allen choose what you should read next (titles with spaces can be used with quotes)
 
+`!tbr <goodreads/storygraph shelf link>` to have Robot Allen randomly select one of your books for you to read.
 
 
 Add Robot Allen to your Discord server by using this link:
@@ -21,4 +24,3 @@ If you have any ideas/bugs/issues please create an issue here or message me @Kai
 **TODO:**
 
 + Properly sanitize inputs for dealing with mixtures of quote types for `!tbr` (both types of double quotes working, but not single quotes currently)
-+ Implement handling `!tbr <goodreads shelf URL>` and reply with book cover image. 
