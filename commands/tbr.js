@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 
 module.exports = async function (msg, tokens) {
   if (tokens.length === 1) {
-    // check that it is a valid goodreads shelf URL (if not, tell the user)
+    // check that it is a valid goodreads/storygraph shelf URL (if not, tell the user)
     if (validUrl.isHttpsUri(tokens[0])) {
       let goodreadsUrl = tokens[0].match(
         /(https?:\/\/(.+?\.)?goodreads\.com\/review\/list\/[0-9a-zA-Z-]*\?shelf=[0-9a-zA-Z-]*(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g
@@ -22,11 +22,6 @@ module.exports = async function (msg, tokens) {
         try {
           const response = await fetch(goodreadsUrl[0]);
           const body = await response.text();
-          //-> might not get response from goodreads server, or no valid titles in shelf (empty shelf?)
-          //console.log(body);
-          // using cheerio, for each <tr> get the title + author (if not found, probably shelf link is private)
-          //    -> store as array of Objects:
-          //    [{title: 'A Game of Thrones', author: 'George R.R. Martin'}, ...]
           $ = cheerio.load(body);
           let raw = [];
           $("#booksBody > tr > td > div > a").each((index, element) => {
@@ -35,6 +30,12 @@ module.exports = async function (msg, tokens) {
               raw.push(data.split("\n").join("").trim().replace(/  +/g, " "));
             }
           });
+          if (raw.length === 0) {
+            msg.channel.send(
+              "That goodreads link didn't work...your account might need to be set to `public`"
+            );
+            return;
+          }
           let combined = [];
           for (let i = 0; i < raw.length - 1; i += 2) {
             combined.push({ title: raw[i], author: raw[i + 1] });
@@ -60,7 +61,6 @@ module.exports = async function (msg, tokens) {
               raw.push(data.split("\n").join("").trim().replace(/  +/g, " "));
             }
           });
-          console.log(raw);
           if (raw.length === 0) {
             msg.channel.send(
               "That storygraph link didn't work...it might need to be set to `public`"
