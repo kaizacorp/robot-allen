@@ -20,7 +20,9 @@ module.exports = async function (msg, tokens) {
       // attempt to crawl the goodreads page for titles + authors
       if (goodreadsUrl) {
         try {
-          const response = await fetch(goodreadsUrl[0] + "per_page=100");
+          const response = await fetch(
+            goodreadsUrl[0] + "&per_page=100&sort=random"
+          );
           const body = await response.text();
           $ = cheerio.load(body);
           let raw = [];
