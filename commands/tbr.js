@@ -42,7 +42,7 @@ module.exports = async function (msg, tokens) {
           }
           let index = Math.floor(Math.random() * combined.length);
           let choice = combined[index];
-          msg.channel.send("**" + choice.title + "by" + choice.author);
+          msg.channel.send("**" + choice.title + "**" + " by " + choice.author);
         } catch (error) {
           console.log(error);
         }
