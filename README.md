@@ -2,7 +2,7 @@
 
 Want a Library of Allenxandria gif but don't know which one? Let Robot Allen decide for you!
 
-Commands include:
+**Commands:**
 
 `!gif` to randomly choose an Allen gif (using Tenor)
 
