@@ -27,7 +27,6 @@ module.exports = async function (msg, tokens) {
         if (uniqueAttempts > json.results.length) {
           console.log("Gif loop occurred!");
           recentGifID = [];
-          return;
         }
       }
       recentGifID.push(json.results[index].id);
