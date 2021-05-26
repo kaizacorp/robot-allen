@@ -24,6 +24,11 @@ module.exports = async function (msg, tokens) {
       while (recentGifID.includes(json.results[index].id)) {
         uniqueAttempts += 1;
         index = Math.floor(Math.random() * json.results.length);
+        if (uniqueAttempts > json.results.length) {
+          console.log("Gif loop occurred!");
+          recentGifID = [];
+          return;
+        }
       }
       recentGifID.push(json.results[index].id);
       if (recentGifID.length >= 25) {
@@ -31,7 +36,6 @@ module.exports = async function (msg, tokens) {
           recentGifID.shift();
         }
       }
-      console.log(recentGifID.length, uniqueAttempts);
 
       msg.channel.send(json.results[index].url);
     }
