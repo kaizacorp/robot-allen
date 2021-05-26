@@ -19,18 +19,18 @@ module.exports = async function (msg, tokens) {
       let response = await fetch(tenorURL);
       let json = await response.json();
       let index = Math.floor(Math.random() * json.results.length);
-      //prevent repetitions of last 24 gifs
+      //prevent repetitions of last number of gifs -> limit param
       let uniqueAttempts = 0;
       while (recentGifID.includes(json.results[index].id)) {
         uniqueAttempts += 1;
         index = Math.floor(Math.random() * json.results.length);
-        if (uniqueAttempts > json.results.length) {
+        if (uniqueAttempts > recentGifID.length) {
           console.log("Gif loop occurred!");
           recentGifID = [];
         }
       }
       recentGifID.push(json.results[index].id);
-      if (recentGifID.length >= 25) {
+      if (recentGifID.length >= json.results.length) {
         if (recentGifID) {
           recentGifID.shift();
         }
