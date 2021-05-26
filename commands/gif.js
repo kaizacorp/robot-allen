@@ -8,8 +8,8 @@ module.exports = async function (msg, tokens) {
   try {
     // tokens after !gif command treated as search terms added on to allenxandria tag
     if (tokens.length > 0) {
-      let terms = tokens.unshift("allenxandria").join(" ");
-      terms = terms.replace(/['"“”]+/g, "");
+      tokens.unshift("allenxandria");
+      let terms = tokens.join(" ").replace(/['"“”]+/g, "");
       let tenorURL = `https://api.tenor.com/v1/search?q=${terms}&key=${process.env.TENORKEY}&limit=1`;
       let response = await fetch(tenorURL);
       let json = await response.json();
