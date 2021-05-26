@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 module.exports = async function (msg, tokens, command) {
   let title = "I am Allenbot, how can I help you?";
   let reply =
-    "Here is a list of available commands: `gif`, `help`, `tbr`.\n" +
+    "Here is a list of available commands: `!gif`, `!help`, `!tbr`.\n" +
     "You can send `!help <command name>` to get additional information on all my commands.";
   if (tokens.length === 0) {
   } else if (tokens[0] === "gif") {
