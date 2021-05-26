@@ -13,6 +13,8 @@ Commands include:
 
 `!tbr <goodreads/storygraph shelf link>` to have Robot Allen randomly select one of your books for you to read.
 
+`!help <command>` to display command usage.
+
 
 Add Robot Allen to your Discord server by using this link:
 
@@ -27,3 +29,5 @@ If you have any ideas/bugs/issues please create an issue here or message me @Kai
 + Properly sanitize inputs for dealing with mixtures of quote types for `!tbr` (both types of double quotes working, but not single quotes currently)
 
 + Tidy up title/author message after random choice (handle weird titles, extract series, handle many authors)
+
++ allow for preview-quelled links in Discord (i.e. `!tbr <url>`)
