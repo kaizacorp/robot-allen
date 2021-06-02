@@ -9,7 +9,10 @@ module.exports = async function (msg) {
   if (tokens.length > 0) {
     tokens = tokens.replace(/["“”]+/g, '"');
     tokens = tokens.match(/(?:[^\s"]+|"[^"]*")+/g);
-    let command = tokens.shift();
+    let command = "";
+    if (tokens) {
+      command = tokens.shift();
+    }
     if (command.charAt(0) === "!") {
       command = command.substring(1);
       let server = "PM";
