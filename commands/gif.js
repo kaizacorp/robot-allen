@@ -13,7 +13,11 @@ module.exports = async function (msg, tokens) {
       let tenorURL = `https://api.tenor.com/v1/search?q=${terms}&key=${process.env.TENORKEY}&limit=1`;
       let response = await fetch(tenorURL);
       let json = await response.json();
-      msg.channel.send(json.results[0].url);
+      let gif = json.results[0].url;
+      if (tokens[1] !== "discworld" && gif === "https://tenor.com/by3kp.gif") {
+        gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
+      }
+      msg.channel.send(gif);
     } else {
       let tenorURL = `https://g.tenor.com/v1/random?q=allenxandria&key=${process.env.TENORKEY}&limit=50`;
       let response = await fetch(tenorURL);
