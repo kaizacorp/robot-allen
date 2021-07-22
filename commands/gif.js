@@ -17,7 +17,11 @@ module.exports = async function (msg, tokens) {
       let response = await fetch(tenorURL);
       let json = await response.json();
       let gif = json.results[0].url;
-      if (tokens[1] !== "discworld" && gif === "https://tenor.com/by3kp.gif") {
+      let isDiscworldSearch =
+        terms.includes("discworld") ||
+        terms.includes("disc") ||
+        gif === "https://tenor.com/by3kp.gif";
+      if (isDiscworldSearch) {
         gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
       }
       if (terms.includes("bagel") || terms.includes("you are a bagel")) {
