@@ -14,6 +14,7 @@ module.exports = async function (msg, tokens) {
         .replace(/['"“”]+/g, "")
         .toLowerCase();
       // check for unindexed terms before making request to tenor
+      let gif = "";
       if (terms.includes("bagel") || terms.includes("you are a bagel")) {
         gif = "https://tenor.com/bFDiN.gif";
         msg.channel.send(gif);
@@ -36,7 +37,7 @@ module.exports = async function (msg, tokens) {
       let tenorURL = `https://api.tenor.com/v1/search?q=${terms}&key=${process.env.TENORKEY}&limit=1`;
       let response = await fetch(tenorURL);
       let json = await response.json();
-      let gif = json.results[0].url;
+      gif = json.results[0].url;
       // if no matching terms, tenor will currently select the discworld gif.
       // Assuming this, the 'default' gif can be set to the boosh gif.
       let isDiscworldSearch =
