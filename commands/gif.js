@@ -28,6 +28,11 @@ module.exports = async function (msg, tokens) {
         msg.channel.send(gif);
         return;
       }
+      if (terms.includes("croissant") || terms.includes("i am eating")) {
+        gif = "https://tenor.com/bGhgq.gif";
+        msg.channel.send(gif);
+        return;
+      }
       let tenorURL = `https://api.tenor.com/v1/search?q=${terms}&key=${process.env.TENORKEY}&limit=1`;
       let response = await fetch(tenorURL);
       let json = await response.json();
