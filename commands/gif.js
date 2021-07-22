@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const fs = require("fs");
 
-//let recentGifID = [];
+// text file to persist list tracking recent gif IDs.
 let recentGifID = read("./commands/recentGifID.txt");
 
 module.exports = async function (msg, tokens) {
@@ -13,19 +13,11 @@ module.exports = async function (msg, tokens) {
         .join(" ")
         .replace(/['"“”]+/g, "")
         .toLowerCase();
-      let tenorURL = `https://api.tenor.com/v1/search?q=${terms}&key=${process.env.TENORKEY}&limit=1`;
-      let response = await fetch(tenorURL);
-      let json = await response.json();
-      let gif = json.results[0].url;
-      let isDiscworldSearch =
-        terms.includes("discworld") ||
-        terms.includes("disc") ||
-        gif === "https://tenor.com/by3kp.gif";
-      if (isDiscworldSearch) {
-        gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
-      }
+      // check for unindexed terms before making request to tenor
       if (terms.includes("bagel") || terms.includes("you are a bagel")) {
         gif = "https://tenor.com/bFDiN.gif";
+        msg.channel.send(gif);
+        return;
       }
       if (
         terms.includes("chewbacca") ||
@@ -33,6 +25,21 @@ module.exports = async function (msg, tokens) {
         terms.includes("noise")
       ) {
         gif = "https://tenor.com/bFEeE.gif";
+        msg.channel.send(gif);
+        return;
+      }
+      let tenorURL = `https://api.tenor.com/v1/search?q=${terms}&key=${process.env.TENORKEY}&limit=1`;
+      let response = await fetch(tenorURL);
+      let json = await response.json();
+      let gif = json.results[0].url;
+      // if no matching terms, tenor will currently select the discworld gif.
+      // Assuming this, the 'default' gif can be set to the boosh gif.
+      let isDiscworldSearch =
+        terms.includes("discworld") ||
+        terms.includes("disc") ||
+        gif === "https://tenor.com/by3kp.gif";
+      if (isDiscworldSearch) {
+        gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
       }
       msg.channel.send(gif);
     } else {
@@ -40,13 +47,13 @@ module.exports = async function (msg, tokens) {
       let response = await fetch(tenorURL);
       let json = await response.json();
       let index = Math.floor(Math.random() * json.results.length);
-      //prevent repetitions of last number of gifs -> limit param
+      //prevent repetitions of last number of gifs -> determined by size of recentGifID list
       let uniqueAttempts = 0;
       while (recentGifID.includes(json.results[index].id)) {
         uniqueAttempts += 1;
         index = Math.floor(Math.random() * json.results.length);
         if (uniqueAttempts > recentGifID.length) {
-          console.log("Gif loop occurred!");
+          console.log("No unique gif ID! Resetting list...");
           recentGifID = [];
         }
       }
