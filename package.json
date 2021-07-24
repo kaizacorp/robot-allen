@@ -14,5 +14,6 @@
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.1",
     "valid-url": "^1.0.9"
-  }
+  },
+  "type": "module"
 }
