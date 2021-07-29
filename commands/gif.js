@@ -38,9 +38,10 @@ module.exports = async function (msg, tokens) {
       let response = await fetch(tenorURL);
       let json = await response.json();
       if (!json.results || !json.results[0]) {
-        gif = json.results[0].url;
-      } else {
         console.log("Error with response json.");
+        return;
+      } else {
+        gif = json.results[0].url;
       }
       // if no matching terms, tenor will currently select the discworld gif.
       // Assuming this, the 'default' gif can be set to the boosh gif.
@@ -58,6 +59,7 @@ module.exports = async function (msg, tokens) {
       let json = await response.json();
       if (!json.results) {
         console.log("Error with response json in random.");
+        return;
       }
       let index = Math.floor(Math.random() * json.results.length);
       //prevent repetitions of last number of gifs -> determined by size of recentGifID list
