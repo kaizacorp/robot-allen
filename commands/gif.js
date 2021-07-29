@@ -56,7 +56,7 @@ module.exports = async function (msg, tokens) {
       let tenorURL = `https://g.tenor.com/v1/random?q=allenxandria&key=${process.env.TENORKEY}&limit=50`;
       let response = await fetch(tenorURL);
       let json = await response.json();
-      if (json.results) {
+      if (!json.results) {
         console.log("Error with response json in random.");
       }
       let index = Math.floor(Math.random() * json.results.length);
