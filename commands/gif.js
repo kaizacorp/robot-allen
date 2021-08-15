@@ -11,7 +11,7 @@ module.exports = async function (msg, tokens) {
       tokens.unshift("allenxandria");
       let terms = tokens
         .join(" ")
-        .replace(/['"“”]+/g, "")
+        .replace(/[’'"“”]+/g, "")
         .toLowerCase();
       // check for unindexed terms before making request to tenor
       let gif = "";
