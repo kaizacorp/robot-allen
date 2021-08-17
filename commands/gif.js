@@ -63,7 +63,7 @@ module.exports = async function (msg, tokens) {
         return;
       }
       let index = Math.floor(Math.random() * json.results.length);
-      //prevent repetitions of last number of gifs -> determined by size of recentGifID list
+      //prevent repetitions of last number of gifs -> determined by limit designated in tenorURL
       let uniqueAttempts = 0;
       let gif = json.results[index];
       let gifID = json.results[index].id;
@@ -84,7 +84,7 @@ module.exports = async function (msg, tokens) {
         }
       }
       recentGifID.push(gifID);
-      if (recentGifID.length >= limit) {
+      if (recentGifID.length >= limit - 1) {
         if (recentGifID) {
           recentGifID.shift();
         }
