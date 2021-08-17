@@ -65,10 +65,13 @@ module.exports = async function (msg, tokens) {
       //prevent repetitions of last number of gifs -> determined by size of recentGifID list
       let uniqueAttempts = 0;
       while (recentGifID.includes(json.results[index].id)) {
+        console.log("Splicing ...", uniqueAttempts);
+        json.results.splice(index, 1); // remove gif so it's not selected again
         uniqueAttempts += 1;
         index = Math.floor(Math.random() * json.results.length);
         if (uniqueAttempts > recentGifID.length) {
           console.log("No unique gif ID! Resetting list...");
+          uniqueAttempts = 0;
           recentGifID = [];
         }
       }
