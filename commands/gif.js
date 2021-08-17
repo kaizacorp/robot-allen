@@ -54,7 +54,8 @@ module.exports = async function (msg, tokens) {
       }
       msg.channel.send(gif);
     } else {
-      let tenorURL = `https://g.tenor.com/v1/random?q=allenxandria&key=${process.env.TENORKEY}&limit=50`;
+      let limit = 50;
+      let tenorURL = `https://g.tenor.com/v1/random?q=allenxandria&key=${process.env.TENORKEY}&limit=${limit}`;
       let response = await fetch(tenorURL);
       let json = await response.json();
       if (!json.results) {
@@ -64,25 +65,33 @@ module.exports = async function (msg, tokens) {
       let index = Math.floor(Math.random() * json.results.length);
       //prevent repetitions of last number of gifs -> determined by size of recentGifID list
       let uniqueAttempts = 0;
-      while (recentGifID.includes(json.results[index].id)) {
-        console.log("Splicing ...", uniqueAttempts);
+      let gif = json.results[index];
+      let gifID = json.results[index].id;
+      while (recentGifID.includes(gifID)) {
+        let lastID = gifID;
+        let last = gif;
         json.results.splice(index, 1); // remove gif so it's not selected again
         uniqueAttempts += 1;
         index = Math.floor(Math.random() * json.results.length);
-        if (uniqueAttempts > recentGifID.length) {
+        gifID = json.results[index].id;
+        gif = json.results[index];
+        if (uniqueAttempts >= limit - 1) {
           console.log("No unique gif ID! Resetting list...");
           uniqueAttempts = 0;
           recentGifID = [];
+          gifID = lastID;
+          gif = last;
         }
       }
-      recentGifID.push(json.results[index].id);
-      if (recentGifID.length >= json.results.length) {
+      recentGifID.push(gifID);
+      if (recentGifID.length >= limit) {
         if (recentGifID) {
           recentGifID.shift();
         }
       }
 
-      msg.channel.send(json.results[index].url);
+      console.log(uniqueAttempts, recentGifID.length);
+      msg.channel.send(gif.url);
     }
   } catch (error) {
     console.log(error);
