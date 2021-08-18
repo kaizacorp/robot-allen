@@ -50,7 +50,7 @@ module.exports = async function (msg, tokens) {
         terms.includes("discworld") ||
         terms.includes("disc") ||
         gif === "https://tenor.com/by3kp.gif";
-      if (isDiscworldSearch) {
+      if (!isDiscworldSearch) {
         gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
       }
       msg.channel.send(gif);
