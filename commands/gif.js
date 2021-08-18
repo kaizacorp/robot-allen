@@ -85,12 +85,15 @@ module.exports = async function (msg, tokens) {
         }
       }
       recentGifID.push(gifID);
+      /*
+      With this commented, it will (try to) never repeat until there are no new gif ID's in the recentGifID list
+      
       if (recentGifID.length >= limit) {
         if (recentGifID) {
           recentGifID.shift();
         }
       }
-
+      */
       console.log(uniqueAttempts, recentGifID.length);
       msg.channel.send(gif.url);
     }
