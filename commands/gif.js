@@ -84,7 +84,7 @@ module.exports = async function (msg, tokens) {
         }
       }
       recentGifID.push(gifID);
-      if (recentGifID.length >= limit - 1) {
+      if (recentGifID.length >= limit) {
         if (recentGifID) {
           recentGifID.shift();
         }
