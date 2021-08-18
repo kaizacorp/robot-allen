@@ -47,12 +47,12 @@ module.exports = async function (msg, tokens) {
       // if no matching terms, tenor will currently select the discworld gif.
       // Assuming this, the 'default' gif can be set to the boosh gif.
       let isDiscworldSearch =
-        terms.includes("discworld") ||
-        terms.includes("disc") ||
-        gif === "https://tenor.com/by3kp.gif";
-      if (!isDiscworldSearch) {
+        terms.includes("disc") || terms.includes("discworld");
+
+      if (!isDiscworldSearch && gif === "https://tenor.com/by3kp.gif") {
         gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
       }
+
       msg.channel.send(gif);
     } else {
       let limit = 50;
