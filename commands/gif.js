@@ -14,6 +14,7 @@ module.exports = async function (msg, tokens) {
         .replace(/[’'"“”]+/g, "")
         .toLowerCase();
       // check for unindexed terms before making request to tenor
+      // TODO: refactor into some kind of database?
       let gif = "";
       if (terms.includes("bagel") || terms.includes("you are a bagel")) {
         gif = "https://tenor.com/bFDiN.gif";
@@ -98,19 +99,29 @@ module.exports = async function (msg, tokens) {
   }
 };
 
+function read(path) {
+  let fileContent;
+  let array;
+  try {
+    fileContent = fs.readFileSync(path);
+    array = JSON.parse(fileContent);
+  } catch (err) {
+    console.log("Error reading text file:", err);
+    array = [];
+  }
+  return array;
+}
+
 function write(array, path) {
   fs.writeFileSync(path, JSON.stringify(array));
 }
 
-function read(path) {
-  const fileContent = fs.readFileSync(path);
-  const array = JSON.parse(fileContent);
-  return array;
-}
-
+// always write the current list of recentGifID's to txt when closing to
+// persist in between shutdowns
 function exitHandler(callback) {
   write(recentGifID, "./commands/recentGifID.txt");
 }
+
 process.on("SIGINT", function () {
   write(recentGifID, "./commands/recentGifID.txt");
   console.log("Ctrl-C...");
