@@ -31,7 +31,7 @@ module.exports = async function (msg, tokens) {
         return;
       }
       if (terms.includes("croissant") || terms.includes("i am eating")) {
-        gif = "https://tenor.com/bGhgq.gif";
+        gif = "https://tenor.com/bHDJh.gif";
         msg.channel.send(gif);
         return;
       }
