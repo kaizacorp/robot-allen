@@ -66,22 +66,24 @@ module.exports = async function (msg, tokens) {
       let index = Math.floor(Math.random() * json.results.length);
       //prevent repetitions of last number of gifs -> determined by limit designated in tenorURL
       let uniqueAttempts = 0;
-      let gif = json.results[index];
-      let gifID = json.results[index].id;
+      let results = json.results.slice();
+      let gif = results[index];
+      let gifID = results[index].id;
       while (recentGifID.includes(gifID)) {
         let lastID = gifID;
         let last = gif;
-        json.results.splice(index, 1); // remove gif so it's not selected again
+        results.splice(index, 1); // remove gif so it's not selected again
         uniqueAttempts += 1;
-        index = Math.floor(Math.random() * json.results.length);
-        gifID = json.results[index].id;
-        gif = json.results[index];
+        index = Math.floor(Math.random() * results.length);
+        gifID = results[index].id;
+        gif = results[index];
         if (uniqueAttempts >= limit - 1) {
           console.log("No unique gif ID! Resetting list...");
           uniqueAttempts = 0;
-          recentGifID = [];
           gifID = lastID;
           gif = last;
+          recentGifID.splice(Math.floor(recentGifID.length / -10));
+          results = json.results.slice();
         }
       }
       recentGifID.push(gifID);
