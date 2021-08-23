@@ -1,19 +1,19 @@
 const fetch = require("node-fetch");
 const fs = require("fs");
 
-// text file to persist list tracking recent gif IDs.
+// Text file to persist list tracking recent gif IDs.
 let recentGifID = read("./commands/recentGifID.txt");
 
 module.exports = async function (msg, tokens) {
   try {
-    // tokens after !gif command treated as search terms added on to allenxandria tag
+    // Tokens after !gif command treated as search terms added on to allenxandria tag
     if (tokens.length > 0) {
       tokens.unshift("allenxandria");
       let terms = tokens
         .join(" ")
         .replace(/[’'"“”]+/g, "")
         .toLowerCase();
-      // check for unindexed terms before making request to tenor
+      // Check for unindexed terms before making request to Tenor
       // TODO: refactor into some kind of database?
       let gif = "";
       if (terms.includes("bagel") || terms.includes("you are a bagel")) {
@@ -26,14 +26,18 @@ module.exports = async function (msg, tokens) {
         terms.includes("perturbed") ||
         terms.includes("noise")
       ) {
-        gif = "https://tenor.com/bFEeE.gif";
+        /* Errors with this particular gif being indexed on Tenor
+        gif = "";
         msg.channel.send(gif);
         return;
+        */
       }
       if (terms.includes("croissant") || terms.includes("i am eating")) {
-        gif = "https://tenor.com/bHDJh.gif";
+        /* Errors with this particular gif being indexed on Tenor
+        gif = "";
         msg.channel.send(gif);
         return;
+        */
       }
       let tenorURL = `https://api.tenor.com/v1/search?q=${terms}&key=${process.env.TENORKEY}&limit=1&contentfilter=medium&locale=en_US&media_filter=basic`;
       let response = await fetch(tenorURL);
@@ -44,7 +48,7 @@ module.exports = async function (msg, tokens) {
       } else {
         gif = json.results[0].url;
       }
-      // if no matching terms, tenor will currently select the discworld gif.
+      // If no matching terms, Tenor will currently select the discworld gif.
       // Assuming this, the 'default' gif can be set to the boosh gif.
       let isDiscworldSearch =
         terms.includes("disc") || terms.includes("discworld");
@@ -64,7 +68,7 @@ module.exports = async function (msg, tokens) {
         return;
       }
       let index = Math.floor(Math.random() * json.results.length);
-      //prevent repetitions of last number of gifs -> determined by limit designated in tenorURL
+      // Prevent repetitions of gifs (checking $limit gifs) before resetting the recent gif list
       let uniqueAttempts = 0;
       let results = json.results.slice();
       let gif = results[index];
@@ -72,7 +76,7 @@ module.exports = async function (msg, tokens) {
       while (recentGifID.includes(gifID)) {
         let lastID = gifID;
         let last = gif;
-        results.splice(index, 1); // remove gif so it's not selected again
+        results.splice(index, 1); // Remove gif so it's not selected again
         uniqueAttempts += 1;
         index = Math.floor(Math.random() * results.length);
         gifID = results[index].id;
@@ -87,15 +91,6 @@ module.exports = async function (msg, tokens) {
         }
       }
       recentGifID.push(gifID);
-      /*
-      With this commented, it will (try to) never repeat until there are no new gif ID's in the recentGifID list
-      
-      if (recentGifID.length >= limit) {
-        if (recentGifID) {
-          recentGifID.shift();
-        }
-      }
-      */
       console.log(uniqueAttempts, recentGifID.length);
       msg.channel.send(gif.url);
     }
@@ -121,8 +116,8 @@ function write(array, path) {
   fs.writeFileSync(path, JSON.stringify(array));
 }
 
-// always write the current list of recentGifID's to txt when closing to
-// persist in between shutdowns
+// Always write the current list of recentGifID's to txt when closing to
+// Persist in between shutdowns
 function exitHandler(callback) {
   write(recentGifID, "./commands/recentGifID.txt");
 }
