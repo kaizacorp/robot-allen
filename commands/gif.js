@@ -86,7 +86,7 @@ module.exports = async function (msg, tokens) {
           uniqueAttempts = 0;
           gifID = lastID;
           gif = last;
-          recentGifID.splice(Math.floor(recentGifID.length / -10));
+          recentGifID.splice(Math.floor(recentGifID.length / 10));
           results = json.results.slice();
         }
       }
