@@ -59,7 +59,7 @@ module.exports = async function (msg, tokens) {
 
       msg.channel.send(gif);
     } else {
-      let limit = 25;
+      let limit = 50;
       let tenorURL = `https://g.tenor.com/v1/random?q=allenxandria&key=${process.env.TENORKEY}&limit=${limit}`;
       let response = await fetch(tenorURL);
       let json = await response.json();
