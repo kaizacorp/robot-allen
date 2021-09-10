@@ -73,7 +73,10 @@ module.exports = async function (msg, tokens) {
         console.log("Error with response json in random.");
         return;
       }
-      let banned = ["https://tenor.com/x6uI.gif"]; // hardcoded list of non-alexandria gifs with the tag
+      let banned = [
+        "https://tenor.com/x6uI.gif",
+        "https://tenor.com/bbWe8.gif",
+      ]; // hardcoded list of non-alexandria gifs with the tag
       let index = Math.floor(Math.random() * json.results.length);
       // Prevent repetitions of gifs (checking $limit gifs) before resetting the recent gif list
       let uniqueAttempts = 0;
