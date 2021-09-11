@@ -88,7 +88,6 @@ module.exports = async function (msg, tokens) {
       let gif = results[index];
       let gifID = results[index].id;
       while (recentGifID.includes(gifID) || banned.includes(gif)) {
-        console.log(gifID);
         let lastID = gifID;
         let last = gif;
         results.splice(index, 1); // Remove gif so it's not selected again
