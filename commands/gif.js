@@ -87,6 +87,14 @@ module.exports = async function (msg, tokens) {
       // Prevent repetitions of gifs (checking $limit gifs) before resetting the recent gif list
       let uniqueAttempts = 0;
       let results = json.results.slice();
+      let allenGifObjects = [];
+      results.array.forEach((gifObject) => {
+        if (gifObject.itemurl.includes(allenxandria)) {
+          allenGifObjects.push(gifObject);
+        }
+      });
+
+      results = allenGifObjects;
       let gif = results[index];
       let gifID = results[index].id;
       while (recentGifID.includes(gifID) || banned.includes(gif)) {
@@ -109,7 +117,7 @@ module.exports = async function (msg, tokens) {
       recentGifID.push(gifID);
       console.log(uniqueAttempts, recentGifID.length);
       msg.channel.send(gif.url);
-      console.log(gif);
+      //console.log(gif);
     }
   } catch (error) {
     console.log(error);
