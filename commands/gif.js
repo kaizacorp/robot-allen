@@ -82,11 +82,15 @@ module.exports = async function (msg, tokens) {
         "https://tenor.com/5Hs4.gif",
         "https://tenor.com/bl66T.gif",
         "https://tenor.com/bwNdE.gif",
+        "https://tenor.com/bnM2H.gif",
+        "https://tenor.com/bEkvM.gif",
       ]; // hardcoded list of non-alexandria gifs with the tag
       // Prevent repetitions of gifs (checking $limit gifs) before resetting the recent gif list
       let uniqueAttempts = 0;
       let results = json.results.slice();
-      let allenGifObjects = [results[0]];
+      let allenGifObjects = [
+        results[Math.floor(Math.random() * results.length)],
+      ];
       results.forEach((gifObject) => {
         if (gifObject.itemurl.includes("allenxandria")) {
           allenGifObjects.push(gifObject);
