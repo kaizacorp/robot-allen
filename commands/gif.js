@@ -94,7 +94,7 @@ module.exports = async function (msg, tokens) {
       });
 
       results = allenGifObjects;
-      let index = Math.floor(Math.random() * json.results.length);
+      let index = Math.floor(Math.random() * results.length);
       let gif = results[index];
       let gifID = results[index].id;
       while (recentGifID.includes(gifID) || banned.includes(gif)) {
