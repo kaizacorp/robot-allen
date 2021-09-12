@@ -88,7 +88,7 @@ module.exports = async function (msg, tokens) {
       let uniqueAttempts = 0;
       let results = json.results.slice();
       let allenGifObjects = [];
-      results.array.forEach((gifObject) => {
+      results.forEach((gifObject) => {
         if (gifObject.itemurl.includes(allenxandria)) {
           allenGifObjects.push(gifObject);
         }
