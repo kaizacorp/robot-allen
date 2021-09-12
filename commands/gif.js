@@ -83,7 +83,6 @@ module.exports = async function (msg, tokens) {
         "https://tenor.com/bl66T.gif",
         "https://tenor.com/bwNdE.gif",
       ]; // hardcoded list of non-alexandria gifs with the tag
-      let index = Math.floor(Math.random() * json.results.length);
       // Prevent repetitions of gifs (checking $limit gifs) before resetting the recent gif list
       let uniqueAttempts = 0;
       let results = json.results.slice();
@@ -95,6 +94,7 @@ module.exports = async function (msg, tokens) {
       });
 
       results = allenGifObjects;
+      let index = Math.floor(Math.random() * json.results.length);
       let gif = results[index];
       let gifID = results[index].id;
       while (recentGifID.includes(gifID) || banned.includes(gif)) {
