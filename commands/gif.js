@@ -86,7 +86,7 @@ module.exports = async function (msg, tokens) {
       // Prevent repetitions of gifs (checking $limit gifs) before resetting the recent gif list
       let uniqueAttempts = 0;
       let results = json.results.slice();
-      let allenGifObjects = [];
+      let allenGifObjects = [results[0]];
       results.forEach((gifObject) => {
         if (gifObject.itemurl.includes("allenxandria")) {
           allenGifObjects.push(gifObject);
