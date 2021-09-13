@@ -84,6 +84,7 @@ module.exports = async function (msg, tokens) {
         "https://tenor.com/bwNdE.gif",
         "https://tenor.com/bnM2H.gif",
         "https://tenor.com/bEkvM.gif",
+        "https://tenor.com/bgVxw.gif",
       ]; // hardcoded list of non-alexandria gifs with the tag
       // Prevent repetitions of gifs (checking $limit gifs) before resetting the recent gif list
       let uniqueAttempts = 0;
