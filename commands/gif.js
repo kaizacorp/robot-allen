@@ -106,7 +106,7 @@ module.exports = async function (msg, tokens) {
       });
 
       results = allenGifObjects;
-      //console.log(results);
+      console.log(results);
       let index = Math.floor(Math.random() * results.length);
       let gif = results[index];
       let gifID = results[index].id;
