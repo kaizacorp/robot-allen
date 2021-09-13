@@ -89,7 +89,7 @@ module.exports = async function (msg, tokens) {
       // Prevent repetitions of gifs (checking $limit gifs) before resetting the recent gif list
       let uniqueAttempts = 0;
       let results = json.results.slice();
-      console.log(results);
+      //console.log(results);
       // add default of boosh gif to list in case *all* somehow get filtered?
       let allenGifObjects = [
         {
@@ -110,7 +110,10 @@ module.exports = async function (msg, tokens) {
       let index = Math.floor(Math.random() * results.length);
       let gif = results[index];
       let gifID = results[index].id;
-      while (recentGifID.includes(gifID) || banned.includes(gif)) {
+      while (
+        results.length > 2 &&
+        (recentGifID.includes(gifID) || banned.includes(gif))
+      ) {
         let lastID = gifID;
         let last = gif;
         results.splice(index, 1); // Remove gif so it's not selected again
