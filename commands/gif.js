@@ -89,16 +89,19 @@ module.exports = async function (msg, tokens) {
       // Prevent repetitions of gifs (checking $limit gifs) before resetting the recent gif list
       let uniqueAttempts = 0;
       let results = json.results.slice();
-      let allenGifObjects = [
+      /*let allenGifObjects = [
         results[Math.floor(Math.random() * results.length)],
-      ];
+      ];*/
+      let allenGifObjects = [];
       results.forEach((gifObject) => {
         if (gifObject.itemurl.includes("allenxandria")) {
           allenGifObjects.push(gifObject);
+          //console.log(gifObject.itemurl);
         }
       });
 
       results = allenGifObjects;
+      console.log(results);
       let index = Math.floor(Math.random() * results.length);
       let gif = results[index];
       let gifID = results[index].id;
@@ -122,7 +125,7 @@ module.exports = async function (msg, tokens) {
       recentGifID.push(gifID);
       console.log(uniqueAttempts, recentGifID.length);
       msg.channel.send(gif.url);
-      //console.log(gif);
+      console.log(gif);
     }
   } catch (error) {
     console.log(error);
