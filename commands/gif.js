@@ -89,10 +89,15 @@ module.exports = async function (msg, tokens) {
       // Prevent repetitions of gifs (checking $limit gifs) before resetting the recent gif list
       let uniqueAttempts = 0;
       let results = json.results.slice();
-      /*let allenGifObjects = [
-        results[Math.floor(Math.random() * results.length)],
-      ];*/
-      let allenGifObjects = [];
+      console.log(results);
+      // add default of boosh gif to list in case *all* somehow get filtered?
+      let allenGifObjects = [
+        {
+          url: "https://tenor.com/by3lR.gif",
+          itemurl: "https://tenor.com/view/allenxandria-boosh-gif-20708353",
+          id: "20708353",
+        },
+      ];
       results.forEach((gifObject) => {
         if (gifObject.itemurl.includes("allenxandria")) {
           allenGifObjects.push(gifObject);
@@ -101,7 +106,7 @@ module.exports = async function (msg, tokens) {
       });
 
       results = allenGifObjects;
-      console.log(results);
+      //console.log(results);
       let index = Math.floor(Math.random() * results.length);
       let gif = results[index];
       let gifID = results[index].id;
