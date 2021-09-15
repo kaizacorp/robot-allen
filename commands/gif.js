@@ -45,7 +45,7 @@ module.exports = async function (msg, tokens) {
         msg.channel.send(gif);
         return;
       }*/
-      let tenorURL = `https://api.tenor.com/v1/search?q=${terms}&key=${process.env.TENORKEY}&limit=1&contentfilter=medium&locale=en_US&media_filter=basic`;
+      let tenorURL = `https://api.tenor.com/v1/search?q=${terms}&key=${process.env.TENORKEY}&limit=1&contentfilter=medium&locale=en_US&media_filter=minimal`;
       let response = await fetch(tenorURL);
       let json = await response.json();
       if (!json.results || !json.results[0]) {
