@@ -65,75 +65,10 @@ module.exports = async function (msg, tokens) {
 
       msg.channel.send(gif);
     } else {
-      let limit = 50;
-      let tenorURL = `https://g.tenor.com/v1/random?q=allenxandria&key=${process.env.TENORKEY}&limit=${limit}`;
-      let response = await fetch(tenorURL);
+      let apiURL = "http://localhost:3000/random";
+      let response = await fetch(apiURL);
       let json = await response.json();
-      if (!json.results) {
-        console.log("Error with response json in random.");
-        return;
-      }
-      let banned = [
-        "https://tenor.com/x6uI.gif",
-        "https://tenor.com/bbWe8.gif",
-        "https://tenor.com/y5Zi.gif",
-        "https://tenor.com/biVnK.gif",
-        "https://tenor.com/buM5M.gif",
-        "https://tenor.com/5Hs4.gif",
-        "https://tenor.com/bl66T.gif",
-        "https://tenor.com/bwNdE.gif",
-        "https://tenor.com/bnM2H.gif",
-        "https://tenor.com/bEkvM.gif",
-        "https://tenor.com/bgVxw.gif",
-      ]; // hardcoded list of non-alexandria gifs with the tag
-      // Prevent repetitions of gifs (checking $limit gifs) before resetting the recent gif list
-      let uniqueAttempts = 0;
-      let results = json.results.slice();
-      console.log(results);
-      // add default of boosh gif to list in case *all* somehow get filtered?
-      let allenGifObjects = [
-        {
-          url: "https://tenor.com/by3lR.gif",
-          itemurl: "https://tenor.com/view/allenxandria-boosh-gif-20708353",
-          id: "20708353",
-        },
-      ];
-      results.forEach((gifObject) => {
-        if (gifObject.itemurl.includes("allenxandria")) {
-          allenGifObjects.push(gifObject);
-          //console.log(gifObject.itemurl);
-        }
-      });
-
-      results = allenGifObjects;
-      //console.log(results);
-      let index = Math.floor(Math.random() * results.length);
-      let gif = results[index];
-      let gifID = results[index].id;
-      while (
-        results.length > 2 &&
-        (recentGifID.includes(gifID) || banned.includes(gif))
-      ) {
-        let lastID = gifID;
-        let last = gif;
-        results.splice(index, 1); // Remove gif so it's not selected again
-        uniqueAttempts += 1;
-        index = Math.floor(Math.random() * results.length);
-        gifID = results[index].id;
-        gif = results[index];
-        if (uniqueAttempts >= limit - 1) {
-          console.log("No unique gif ID! Resetting list...");
-          uniqueAttempts = 0;
-          gifID = lastID;
-          gif = last;
-          recentGifID.splice(Math.floor(recentGifID.length / 10));
-          results = json.results.slice();
-        }
-      }
-      recentGifID.push(gifID);
-      console.log(uniqueAttempts, recentGifID.length);
-      msg.channel.send(gif.url);
-      console.log(gif);
+      msg.channel.send(json.url);
     }
   } catch (error) {
     console.log(error);
