@@ -1,8 +1,4 @@
 const fetch = require("node-fetch");
-const fs = require("fs");
-
-// Text file to persist list tracking recent gif IDs.
-let recentGifID = read("./commands/recentGifID.txt");
 
 module.exports = async function (msg, tokens) {
   try {
@@ -26,32 +22,3 @@ module.exports = async function (msg, tokens) {
     console.log(error);
   }
 };
-
-function read(path) {
-  let fileContent;
-  let array;
-  try {
-    fileContent = fs.readFileSync(path);
-    array = JSON.parse(fileContent);
-  } catch (err) {
-    console.log("Error reading text file:", err);
-    array = [];
-  }
-  return array;
-}
-
-function write(array, path) {
-  fs.writeFileSync(path, JSON.stringify(array));
-}
-
-// Always write the current list of recentGifID's to txt when closing to
-// Persist in between shutdowns
-function exitHandler(callback) {
-  write(recentGifID, "./commands/recentGifID.txt");
-}
-
-process.on("SIGINT", function () {
-  write(recentGifID, "./commands/recentGifID.txt");
-  console.log("Ctrl-C...");
-  process.exit(2);
-});
