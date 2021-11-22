@@ -9,8 +9,8 @@ module.exports = async function (msg, tokens, command) {
     title = "!gif command usage";
     reply =
       "This is the `!gif` command.\n" +
-      "You can send `!gif` for a random Library of Allenxandria GIF straight from the depths of Tenor (lovingly crafted by the one and only Evie!)\n" +
-      "You can also send `!gif term1 term2 ...` to search Tenor for a specific Allen gif.";
+      "You can send `!gif` for a random Library of Allenxandria GIF (lovingly crafted by the one and only Evie!)\n" +
+      "You can also send `!gif term1 term2 ...` to search for a specific Allen gif.";
   } else if (tokens[0] === "help") {
     title = "!help command usage";
     reply =
