@@ -24,7 +24,15 @@ module.exports = async function (msg, tokens) {
       let apiURL = "http://localhost:3000/random";
       let response = await fetch(apiURL);
       let json = await response.json();
-      msg.channel.send(json.url);
+      let gif;
+      if (json.url) {
+        gif = json.url;
+      } else {
+        // default gif
+        gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
+        return;
+      }
+      msg.channel.send(gif);
     }
   } catch (error) {
     console.log(error);
