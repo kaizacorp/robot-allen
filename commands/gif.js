@@ -12,7 +12,6 @@ module.exports = async function (msg, tokens) {
       let response = await fetch(apiURL);
       let json = await response.json();
       let gif;
-      console.log(json);
       if (json.length > 0) {
         gif = json[0].url;
       } else {
