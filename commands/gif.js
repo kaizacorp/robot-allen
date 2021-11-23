@@ -11,7 +11,15 @@ module.exports = async function (msg, tokens) {
       let apiURL = `http://localhost:3000/search?tags=${terms}`;
       let response = await fetch(apiURL);
       let json = await response.json();
-      msg.channel.send(json[0].url);
+      let gif;
+      if (json[0]) {
+        gif = json[0].url;
+      } else {
+        // default gif
+        gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
+        return;
+      }
+      msg.channel.send(gif);
     } else {
       let apiURL = "http://localhost:3000/random";
       let response = await fetch(apiURL);
