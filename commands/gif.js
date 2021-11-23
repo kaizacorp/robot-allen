@@ -18,7 +18,6 @@ module.exports = async function (msg, tokens) {
       } else {
         // default gif
         gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
-        return;
       }
       msg.channel.send(gif);
     } else {
@@ -26,13 +25,12 @@ module.exports = async function (msg, tokens) {
       let response = await fetch(apiURL);
       let json = await response.json();
       let gif;
-      console.log(json);
-      if (json) {
+
+      if (Object.keys(json).length !== 0) {
         gif = json.url;
       } else {
         // default gif
         gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
-        return;
       }
       msg.channel.send(gif);
     }
