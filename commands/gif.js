@@ -12,7 +12,7 @@ module.exports = async function (msg, tokens) {
       let response = await fetch(apiURL);
       let json = await response.json();
       let gif;
-      if (json[0]) {
+      if (json.length > 0) {
         gif = json[0].url;
       } else {
         // default gif
@@ -25,7 +25,7 @@ module.exports = async function (msg, tokens) {
       let response = await fetch(apiURL);
       let json = await response.json();
       let gif;
-      if (json.url) {
+      if (json) {
         gif = json.url;
       } else {
         // default gif
