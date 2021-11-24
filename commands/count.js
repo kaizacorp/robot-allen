@@ -3,7 +3,6 @@ const fetch = require("node-fetch");
 module.exports = async function (msg, tokens, command) {
   let apiURL = "http://localhost:3000/count";
   let response = await fetch(apiURL);
-  console.log(response);
   let resp = await response.json();
 
   let title = "Allenxandria GIF Count:";
