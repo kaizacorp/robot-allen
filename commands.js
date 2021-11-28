@@ -26,7 +26,7 @@ module.exports = async function (msg) {
         commands[command](msg, tokens);
       }
     } else if (command.toLowerCase() === "allenbot") {
-      console.log("Allenbot", tokens, msg.author.username, "@", server);
+      console.log("Allenbot", tokens, msg.author.username, "@", msg.guild.name);
       commands["gif"](msg, []);
     }
   }
