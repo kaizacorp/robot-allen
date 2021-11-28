@@ -9,6 +9,7 @@ module.exports = async function (msg) {
   let tokens = msg.content;
   if (tokens.length > 0) {
     tokens = tokens.replace(/["“”]+/g, '"');
+    tokens = tokens.replace(/[,]+/g, " ");
     tokens = tokens.match(/(?:[^\s"]+|"[^"]*")+/g);
     let command = "";
     if (tokens) {
@@ -24,6 +25,9 @@ module.exports = async function (msg) {
         console.log(command, tokens, msg.author.username, "@", server);
         commands[command](msg, tokens);
       }
+    } else if (command.toLowerCase() === "allenbot") {
+      console.log("Allenbot", tokens, msg.author.username, "@", server);
+      commands["gif"](msg, []);
     }
   }
 };
