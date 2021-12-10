@@ -19,7 +19,7 @@ Want a Library of Allenxandria gif but don't know which one? Let Robot Allen dec
 
 Add Robot Allen to your Discord server by using this link:
 
-https://discord.com/oauth2/authorize?client_id=834824357989318679&scope=bot
+https://ptb.discord.com/api/oauth2/authorize?client_id=834824357989318679&permissions=274877910016&scope=bot
 
 The bot currently runs on all channels. This is my first Discord bot so please bear with me.
 
