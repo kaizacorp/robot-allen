@@ -21,7 +21,7 @@ module.exports = async function (msg, tokens) {
       let response = await fetch(apiURL);
       let json = await response.json();
       let gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
-      if (Object.keys(json).length !== 0) {
+      if (Object.keys(json).length !== 0 && json.url !== "") {
         gif = json.url;
       }
       msg.channel.send(gif);
