@@ -79,7 +79,9 @@ module.exports = async function (msg, tokens) {
     }
     return;
   } else if (tokens.length < 2) {
-    msg.channel.send("Robot Allen requires at least two (or more) choices");
+    msg.channel.send(
+      "Robot Allen requires at least two choices or a valid GoodReads/Storygraph URL"
+    );
   } else {
     let index = Math.floor(Math.random() * tokens.length);
     let book = tokens[index].replace(/["“”]+/g, "");
