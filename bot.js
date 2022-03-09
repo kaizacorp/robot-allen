@@ -1,6 +1,8 @@
 require("dotenv").config();
-const Discord = require("discord.js");
-const client = new Discord.Client();
+//const Discord = require("discord.js");
+//const client = new Discord.Client();
+const { Client, Intents } = require("discord.js");
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 console.log("Have you met Allen?");
 
@@ -12,4 +14,4 @@ client.on("ready", () => {
 
 const commandHandler = require("./commands");
 
-client.on("message", commandHandler);
+client.on("messageCreate", commandHandler);
