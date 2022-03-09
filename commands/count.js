@@ -13,5 +13,5 @@ module.exports = async function (msg, tokens, command) {
     .setTitle(title)
     .setDescription(reply);
 
-  msg.channel.send(embed);
+  msg.channel.send({ embeds: [embed] });
 };
