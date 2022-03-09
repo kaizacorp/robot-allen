@@ -80,7 +80,7 @@ module.exports = async function (msg, tokens) {
     return;
   } else if (tokens.length < 2) {
     msg.channel.send(
-      "Robot Allen requires at least two choices or a valid GoodReads/Storygraph URL"
+      "Robot Allen requires at least two choices or a valid GoodReads/Storygraph URL. Try `!help tbr` for more details."
     );
   } else {
     let index = Math.floor(Math.random() * tokens.length);
