@@ -10,8 +10,6 @@ module.exports = async function (msg) {
   if (tokens.length > 0) {
     tokens = tokens.replace(/["“”]+/g, '"');
     tokens = tokens.replace(/[,]+/g, " ");
-    //tokens = tokens.replace(/[.]+/g, " ");
-    //tokens = tokens.replace(/[?]+/g, " ");
     tokens = tokens.match(/(?:[^\s"]+|"[^"]*")+/g);
     let command = "";
     if (tokens) {
