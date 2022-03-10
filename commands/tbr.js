@@ -68,6 +68,7 @@ module.exports = async function (msg, tokens) {
             return;
           }
           let index = Math.floor(Math.random() * raw.length);
+          console.log(raw.length);
           let choice = raw[index];
           msg.channel.send(choice);
         } catch (error) {
