@@ -11,7 +11,7 @@ module.exports = async function (msg, tokens) {
         .join(" ")
         .replace(/[’'"“”]+/g, "")
         .toLowerCase();
-      let apiURL = `http://localhost:3000/search?tags=${terms}`;
+      apiURL = `http://localhost:3000/search?tags=${terms}`;
     }
     let response = await fetch(apiURL);
     let json = await response.json();
