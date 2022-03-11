@@ -6,7 +6,7 @@ module.exports = async function (msg, tokens, command) {
   let response = await fetch(apiURL);
   let resp = await response.json();
 
-  let title = "Allenxandria GIF Count:";
+  let title = "Library of Allenxandria GIFs:";
   let reply = "**" + resp.count + "**";
 
   const embed = new Discord.MessageEmbed()
