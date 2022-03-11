@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const defaultGif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
 
 module.exports = async function (msg, tokens) {
   try {
@@ -11,7 +12,7 @@ module.exports = async function (msg, tokens) {
       let apiURL = `http://localhost:3000/search?tags=${terms}`;
       let response = await fetch(apiURL);
       let json = await response.json();
-      let gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
+      let gif = defaultGif;
       if (json.length > 0) {
         gif = json[0].url;
       }
@@ -20,7 +21,7 @@ module.exports = async function (msg, tokens) {
       let apiURL = "http://localhost:3000/random";
       let response = await fetch(apiURL);
       let json = await response.json();
-      let gif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
+      let gif = defaultGif;
       if (Object.keys(json).length !== 0 && json.url !== "") {
         gif = json.url;
       }
