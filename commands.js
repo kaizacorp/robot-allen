@@ -17,7 +17,7 @@ module.exports = async function (msg) {
     }
     if (command.charAt(0) === "!") {
       command = command.substring(1);
-      let server = "PM";
+      let server = "DM";
       if (msg.guild) {
         server = msg.guild.name;
       }
