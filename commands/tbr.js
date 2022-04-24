@@ -9,6 +9,7 @@ module.exports = async function (msg, tokens) {
     if (url.charAt(0) === "<" && url.charAt(url.length - 1) === ">") {
       url = url.slice(1, url.length - 1);
     }
+    console.log(url);
     if (validUrl.isHttpsUri(url)) {
       let goodreadsUrl = url.match(
         /(https?:\/\/(.+?\.)?goodreads\.com\/review\/list\/[0-9a-zA-Z-]*\?shelf=[0-9a-zA-Z-]*(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g
