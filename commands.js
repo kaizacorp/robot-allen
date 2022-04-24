@@ -27,7 +27,7 @@ module.exports = async function (msg) {
         console.log(command, tokens, msg.author.username, "@", server);
         commands[command](msg, tokens);
       }
-    } else if (command.toLowerCase() === "allenbot") {
+    } else if (command.toLowerCase().includes() === "allenbot") {
       console.log(
         "Allenbot",
         tokens.join(" "),
