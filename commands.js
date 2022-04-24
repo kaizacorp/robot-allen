@@ -15,12 +15,14 @@ module.exports = async function (msg) {
     if (tokens) {
       command = tokens.shift();
     }
+
+    let server = "DM";
+    if (msg.guild) {
+      server = msg.guild.name;
+    }
+
     if (command.charAt(0) === "!") {
       command = command.substring(1);
-      let server = "DM";
-      if (msg.guild) {
-        server = msg.guild.name;
-      }
       if (command in commands) {
         console.log(command, tokens, msg.author.username, "@", server);
         commands[command](msg, tokens);
@@ -31,7 +33,7 @@ module.exports = async function (msg) {
         tokens.join(" "),
         msg.author.username,
         "@",
-        msg.guild.name
+        server
       );
       commands["gif"](msg, []);
     }
