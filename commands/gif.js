@@ -9,7 +9,7 @@ module.exports = async function (msg, tokens) {
     if (tokens.length > 0) {
       let terms = tokens
         .join(" ")
-        .replace(/[’'"“”]+/g, "")
+        .replace(/["“”]+/g, "")
         .toLowerCase();
       apiURL = `http://localhost:3000/search?tags=${terms}`;
     }
