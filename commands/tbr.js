@@ -7,8 +7,7 @@ module.exports = async function (msg, tokens) {
     // check that it is a valid goodreads/storygraph shelf URL (if not, tell the user)
     let url = tokens[0];
     if (url.charAt(0) === "<" && url.charAt(url.length - 1) === ">") {
-      url = url.slice(1, -1);
-      console.log("quelled:", url);
+      url = url.slice(1, url.length - 1);
     }
     if (validUrl.isHttpsUri(url)) {
       let goodreadsUrl = url.match(
