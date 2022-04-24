@@ -5,11 +5,16 @@ const cheerio = require("cheerio");
 module.exports = async function (msg, tokens) {
   if (tokens.length === 1) {
     // check that it is a valid goodreads/storygraph shelf URL (if not, tell the user)
-    if (validUrl.isHttpsUri(tokens[0])) {
-      let goodreadsUrl = tokens[0].match(
+    let url = tokens[0];
+    if (url.charAt(0) === "<" && url.charAt(url.length - 1) === ">") {
+      url = url.slice(1, -1);
+      console.log("quelled:", url);
+    }
+    if (validUrl.isHttpsUri(url)) {
+      let goodreadsUrl = url.match(
         /(https?:\/\/(.+?\.)?goodreads\.com\/review\/list\/[0-9a-zA-Z-]*\?shelf=[0-9a-zA-Z-]*(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g
       );
-      let storygraphUrl = tokens[0].match(
+      let storygraphUrl = url.match(
         /(https?:\/\/(.+?\.)?thestorygraph\.com\/tags\/[0-9a-zA-Z-]*(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g
       );
       if (!goodreadsUrl && !storygraphUrl) {
