@@ -14,6 +14,13 @@ module.exports = async function (msg, tokens) {
       let goodreadsUrl = url.match(
         /(https?:\/\/(.+?\.)?goodreads\.com\/review\/list\/[0-9a-zA-Z-]*\?shelf=[0-9a-zA-Z-]*(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g
       );
+
+      if (!goodreadsUrl) {
+        // check for nav reference
+        goodreadsUrl = url.match(
+          /(https?:\/\/(.+?\.)?goodreads\.com\/review\/list\/[0-9a-zA-Z-]*\?ref=[0-9a-zA-Z-_]*\&shelf=[0-9a-zA-Z-]*(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g
+        );
+      }
       let storygraphUrl = url.match(
         /(https?:\/\/(.+?\.)?thestorygraph\.com\/tags\/[0-9a-zA-Z-]*(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g
       );
