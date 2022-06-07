@@ -28,7 +28,9 @@ module.exports = async function (msg, tokens, command) {
       "You can send `!tbr <goodreads/storygraph shelf link>` to have Allenbot randomly select a book from your shelf!";
   } else {
     title = "Unknown command?";
-    reply = "I'm sorry, I can't help you with that command!";
+    reply =
+      "I'm sorry, I can't help you with that command!\n" +
+      "Try `!help gif`, `!help tbr`, or `!help help` for more details.";
   }
 
   const embed = new Discord.MessageEmbed()
