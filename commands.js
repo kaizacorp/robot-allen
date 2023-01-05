@@ -2,8 +2,9 @@ const gif = require("./commands/gif.js");
 const help = require("./commands/help.js");
 const tbr = require("./commands/tbr.js");
 const count = require("./commands/count.js");
+const tags = require("./commands/tags.js");
 
-const commands = { gif, help, tbr, count };
+const commands = { gif, help, tbr, count, tags };
 
 module.exports = async function (msg) {
   let tokens = msg.content;
