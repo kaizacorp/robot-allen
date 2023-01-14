@@ -4,6 +4,7 @@
   "description": "Discord bot for Library of Allenxandria's Discord server",
   "main": "bot.js",
   "scripts": {
+    "start": "node bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kai Charlton",
