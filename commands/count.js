@@ -1,8 +1,9 @@
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
+require("dotenv").config();
 
 module.exports = async function (msg, tokens, command) {
-  let apiURL = "http://localhost:3000/count";
+  let apiURL = `${process.env.API_URL}/count`;
   let response = await fetch(apiURL);
   let resp = await response.json();
 
