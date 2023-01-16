@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
-const defaultGif = "https://tenor.com/view/allenxandria-boosh-gif-20708353";
+const defaultGif =
+  "https://cdn.discordapp.com/attachments/834826825943089184/1061332404708577300/allenxandria-boosh.gif";
 
 module.exports = async function (msg, tokens) {
   try {
