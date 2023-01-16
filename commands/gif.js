@@ -5,7 +5,7 @@ const defaultGif =
 module.exports = async function (msg, tokens) {
   try {
     // default API endpoint as random gif
-    let apiURL = "http://localhost:3000/random";
+    let apiURL = `http://localhost:3000/random?key=${process.env.ACCESS_KEY}`;
     // if tokens exist, use on search endpoint
     if (tokens.length > 0) {
       let terms = tokens
