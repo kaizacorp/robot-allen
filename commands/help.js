@@ -18,7 +18,7 @@ module.exports = async function (msg, tokens, command) {
       "This is the `!help` command.\n" +
       reply +
       "\n" +
-      "If you have suggestions for improving Allenbot please message KaizaCorp#6992";
+      "If you have suggestions for improving Allenbot please message KaizaCorp#1337";
   } else if (tokens[0] === "tbr") {
     title = "!tbr command usage";
     reply =
@@ -26,6 +26,11 @@ module.exports = async function (msg, tokens, command) {
       "You can send `!tbr 'choice1' 'choice2' ...` to have Allenbot decide your TBR for you!\n" +
       "Allenbot has special responses for certain titles, see if you can find them!\n" +
       "You can send `!tbr <goodreads/storygraph shelf link>` to have Allenbot randomly select a book from your shelf!";
+  } else if (tokens[0] === "tags") {
+    title = "!tag command usage";
+    reply =
+      "This is the `!tags` command.\n" +
+      "You can send `!tags gif-url` to have Allenbot tell you which tags are associated with a given gif URL.";
   } else {
     title = "Unknown command?";
     reply =
