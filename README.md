@@ -15,9 +15,9 @@ Commands:
 
 `!gif` to randomly choose an Allen gif.
 
-`!gif term1 term2 ...` to search for an Allen gif with the matching tags.
+`!gif <term1> <term2> ...` to search for an Allen gif with the matching tags.
 
-`!tbr option1 option2 ...` to have Robot Allen choose what you should read next (titles with spaces can be used with quotes).
+`!tbr <option1> <option2> ...` to have Robot Allen choose what you should read next (titles with spaces can be used with quotes).
 
 `!tbr <goodreads/storygraph shelf link>` to have Robot Allen randomly select one of your books for you to read (profile must be public for goodreads).
 
