@@ -8,7 +8,7 @@ https://ptb.discord.com/api/oauth2/authorize?client_id=834824357989318679&scope=
 
 The bot currently runs on all channels. This is my first Discord bot so please bear with me.
 
-If you have any ideas/bugs/issues please create an issue here or message me **@KaizaCorp#1337** on Discord to let me know! 
+If you have any ideas/bugs/issues please create an issue here or message me `@KaizaCorp#1337` on Discord to let me know! 
 
 Commands:
 --
