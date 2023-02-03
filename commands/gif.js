@@ -6,18 +6,18 @@ const defaultGif =
 
 module.exports = async function (msg, tokens) {
   try {
-    // default API endpoint as random gif
+    // default API endpoint as /random
     let apiURL = `${process.env.API_URL}/random?key=${process.env.ACCESS_KEY}`;
-    // if tokens exist, use on search endpoint
+    // /search if terms given
     if (tokens.length > 0) {
-      let terms = tokens
+      const terms = tokens
         .join(" ")
         .replace(/["“”]+/g, "")
         .toLowerCase();
       apiURL = `${process.env.API_URL}/search?tags=${terms}`;
     }
-    let response = await fetch(apiURL);
-    let json = await response.json();
+    const response = await fetch(apiURL);
+    const json = await response.json();
     let gif = defaultGif;
     if (Object.keys(json).length !== 0 && json.url !== "") {
       gif = json.url;
