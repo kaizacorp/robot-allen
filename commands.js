@@ -12,9 +12,13 @@ module.exports = async function (msg) {
     tokens = tokens.replace(/["“”]+/g, '"');
     tokens = tokens.replace(/[,]+/g, " ");
     tokens = tokens.match(/(?:[^\s"]+|"[^"]*")+/g);
-    let command = "";
-    if (tokens) {
-      command = tokens.shift();
+    if (!tokens) {
+      return;
+    }
+
+    const firstWord = tokens.shift();
+    if (firstWord.charAt(0) !== "!") {
+      return;
     }
 
     let server = "DM";
@@ -22,12 +26,10 @@ module.exports = async function (msg) {
       server = msg.guild.name;
     }
 
-    if (command.charAt(0) === "!") {
-      command = command.substring(1);
-      if (command in commands) {
-        console.log(command, tokens, msg.author.username, "@", server);
-        commands[command](msg, tokens);
-      }
+    const command = firstWord.substring(1);
+    if (command in commands) {
+      console.log(command, tokens, msg.author.username, "@", server);
+      commands[command](msg, tokens);
     } else if (command.toLowerCase().includes("allenbot")) {
       console.log(command, tokens.join(" "), msg.author.username, "@", server);
       commands["gif"](msg, []);
