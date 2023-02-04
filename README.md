@@ -27,7 +27,7 @@ Commands:
 
 `!tags <url>` to display all tags for a given Allen gif url.
 
-Any messages where the first word contains 'allenbot' is equivalent to `!gif`
+Any messages where the first word contains 'allenbot' is equivalent to `!gif` -> will respond with a random gif.
 
 
 
