@@ -10,6 +10,8 @@ The bot currently runs on all channels. This is my first Discord bot so please b
 
 If you have any ideas/bugs/issues please create an issue here or message me `@KaizaCorp#1337` on Discord to let me know! 
 
+Search through all the current gifs by checking out the [React front end](https://kaizacorp.github.io/allenbot/)
+
 Commands:
 --
 
