@@ -42,3 +42,4 @@ TODO:
 + Properly sanitize inputs for dealing with mixtures of quote types for `!tbr` (both types of double quotes working, but not single quotes currently)
 + Tidy up title/author message after random choice (handle weird titles, extract series, handle many authors)
 + handle storygraph shelf infinite scroll for `!tbr`
++ use logging library
