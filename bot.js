@@ -13,7 +13,7 @@ const client = new Client({
 
 console.log("Have you met Allen?");
 
-client.login(process.env.BOTTOKEN);
+client.login(process.env.BOT_TOKEN);
 
 client.on("ready", () => {
   console.log("💖");
