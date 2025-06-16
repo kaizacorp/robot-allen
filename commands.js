@@ -17,9 +17,9 @@ export default async function (msg) {
     }
 
     const firstWord = tokens.shift();
-    if (firstWord.charAt(0) !== "!") {
-      return;
-    }
+    //if (firstWord.charAt(0) !== "!") {
+    //  return;
+    //}
 
     let server = "DM";
     if (msg.guild) {
@@ -30,8 +30,14 @@ export default async function (msg) {
     if (command in commands) {
       console.log(command, tokens, msg.author.username, "@", server);
       commands[command](msg, tokens);
-    } else if (command.toLowerCase().includes("allenbot")) {
-      console.log(command, tokens.join(" "), msg.author.username, "@", server);
+    } else if (firstWord.toLowerCase().includes("allenbot")) {
+      console.log(
+        "Allenbot trigger: ",
+        tokens.join(" "),
+        msg.author.username,
+        "@",
+        server
+      );
       commands["gif"](msg, []);
     }
   }
