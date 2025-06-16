@@ -1,10 +1,12 @@
-const fetch = require("node-fetch");
-require("dotenv").config();
+// const fetch = require("node-fetch");
+import fetch from "node-fetch";
+//require("dotenv").config();
+import "dotenv/config";
 
 const defaultGif =
   "https://cdn.discordapp.com/attachments/834826825943089184/1061332404708577300/allenxandria-boosh.gif";
 
-module.exports = async function (msg, tokens) {
+export default async function (msg, tokens) {
   try {
     // default API endpoint as /random
     let apiURL = `${process.env.API_URL}/random?key=${process.env.ACCESS_KEY}`;
@@ -26,4 +28,4 @@ module.exports = async function (msg, tokens) {
   } catch (error) {
     console.log(error);
   }
-};
+}

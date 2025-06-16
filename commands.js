@@ -1,12 +1,12 @@
-const gif = require("./commands/gif.js");
-const help = require("./commands/help.js");
-const tbr = require("./commands/tbr.js");
-const count = require("./commands/count.js");
-const tags = require("./commands/tags.js");
+import gif from "./commands/gif.js";
+import help from "./commands/help.js";
+import tbr from "./commands/tbr.js";
+import count from "./commands/count.js";
+import tags from "./commands/tags.js";
 
 const commands = { gif, help, tbr, count, tags };
 
-module.exports = async function (msg) {
+export default async function (msg) {
   let tokens = msg.content;
   if (tokens.length > 0) {
     tokens = tokens.replace(/["“”]+/g, '"');
@@ -35,4 +35,4 @@ module.exports = async function (msg) {
       commands["gif"](msg, []);
     }
   }
-};
+}

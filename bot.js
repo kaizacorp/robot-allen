@@ -1,6 +1,11 @@
-require("dotenv").config();
-const { Client, GatewayIntentBits, Partials } = require("discord.js");
-const commandHandler = require("./commands");
+//require("dotenv").config();
+import "dotenv/config";
+
+//const { Client, GatewayIntentBits, Partials } = require("discord.js");
+import { Client, GatewayIntentBits, Partials } from "discord.js";
+
+//const commandHandler = require("./commands");
+import commandHandler from "./commands.js";
 
 const client = new Client({
   intents: [

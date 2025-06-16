@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
-const fetch = require("node-fetch");
-require("dotenv").config();
+import Discord from "discord.js";
+import fetch from "node-fetch";
+import "dotenv/config";
 
-module.exports = async function (msg, tokens, command) {
+export default async function (msg, tokens, command) {
   const apiURL = `${process.env.API_URL}/count`;
   const response = await fetch(apiURL);
   const resp = await response.json();
@@ -10,10 +10,9 @@ module.exports = async function (msg, tokens, command) {
   const title = "Library of Allenxandria GIFs:";
   const reply = "**" + resp.count + "**";
 
-  const embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
+  const embed = new Discord.EmbedBuilder()
     .setTitle(title)
     .setDescription(reply);
 
   msg.channel.send({ embeds: [embed] });
-};
+}

@@ -1,6 +1,7 @@
-const Discord = require("discord.js");
+//const Discord = require("discord.js");
+import Discord from "discord.js";
 
-module.exports = async function (msg, tokens, command) {
+export default async function (msg, tokens, command) {
   let title = "I am Allenbot, how can I help you?";
   let reply =
     "Here is a list of available commands: `!gif`, `!help`, `!tbr`.\n" +
@@ -38,10 +39,9 @@ module.exports = async function (msg, tokens, command) {
       "Try `!help gif`, `!help tbr`, or `!help help` for more details.";
   }
 
-  const embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
+  const embed = new Discord.EmbedBuilder()
     .setTitle(title)
     .setDescription(reply);
 
   msg.channel.send({ embeds: [embed] });
-};
+}

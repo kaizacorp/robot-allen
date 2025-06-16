@@ -1,7 +1,7 @@
-const fetch = require("node-fetch");
-require("dotenv").config();
+import fetch from "node-fetch";
+import "dotenv/config";
 
-module.exports = async function (msg, tokens) {
+export default async function (msg, tokens) {
   try {
     let tagsMessage = "Invalid URL to perform tag search.";
     if (!tokens || tokens.length === 0) {
@@ -23,4 +23,4 @@ module.exports = async function (msg, tokens) {
   } catch (error) {
     console.log(error);
   }
-};
+}

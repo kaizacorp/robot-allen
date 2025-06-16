@@ -1,8 +1,8 @@
-const validUrl = require("valid-url");
-const fetch = require("node-fetch");
-const cheerio = require("cheerio");
+import validUrl from "valid-url";
+import fetch from "node-fetch";
+import * as cheerio from "cheerio";
 
-module.exports = async function (msg, tokens) {
+export default async function (msg, tokens) {
   if (tokens.length === 1) {
     // check that it is a valid goodreads/storygraph shelf URL (if not, tell the user)
     let url = tokens[0];
@@ -36,7 +36,7 @@ module.exports = async function (msg, tokens) {
             goodreadsUrl[0] + "&per_page=100&sort=random"
           );
           const body = await response.text();
-          $ = cheerio.load(body);
+          let $ = cheerio.load(body);
           let raw = [];
           $("#booksBody > tr > td > div > a").each((index, element) => {
             let data = $(element).text();
@@ -65,7 +65,7 @@ module.exports = async function (msg, tokens) {
         try {
           const response = await fetch(storygraphUrl[0]);
           const body = await response.text();
-          $ = cheerio.load(body);
+          let $ = cheerio.load(body);
           let raw = [];
           $(".book-title-author-and-series").each((index, element) => {
             let data = $(element).text();
@@ -179,4 +179,4 @@ module.exports = async function (msg, tokens) {
 
     msg.channel.send(text);
   }
-};
+}
